@@ -1,0 +1,37 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<MainLayout> _localizer
+
+<MudAppBar Elevation="25">
+    <MudIcon Icon="@CustomIcons.BlazorHero" Size="Size.Medium" ViewBox="0 0 500 500" />
+    <MudText Typo="Typo.h6" Class="ml-4">Suivi Foncier</MudText>
+    <MudSpacer />
+    <MudMenu AnchorOrigin="_rightToLeft ? Origin.BottomRight : Origin.BottomLeft" Dense="true" Class="mt-1 ml-4">
+        <ActivatorContent>
+            @if (string.IsNullOrEmpty(ImageDataUrl))
+            {
+                <MudAvatar Color="Color.Secondary">@FirstLetterOfName</MudAvatar>
+            }
+            else
+            {
+                <MudAvatar Style="height:50px; width:50px;">
+                    <MudImage Src="ImageDataUrl" />
+                </MudAvatar>
+            }
+        </ActivatorContent>
+        <ChildContent>
+            <UserCard Class="mt-n2" />
+            <MudDivider Class="mb-2" />
+            <MudListItem T="string" Text="@_localizer["Account"]" Href="/account" Icon="@Icons.Material.Outlined.Person" />
+            <MudListItem T="string" Text="@_localizer["Logout"]" Icon="@Icons.Material.Filled.Logout" OnClick="Logout" />
+        </ChildContent>
+    </MudMenu>
+</MudAppBar>
+<MudDrawer @bind-Open="_drawerOpen" Elevation="25" ClipMode="DrawerClipMode.Always">
+    <NavMenu />
+</MudDrawer>
+<MudMainContent>
+    <MudContainer MaxWidth="MaxWidth.False" Class="mt-4">
+        <CascadingValue Value="hubConnection">
+            @ChildContent
+        </CascadingValue>
+    </MudContainer>
+</MudMainContent>

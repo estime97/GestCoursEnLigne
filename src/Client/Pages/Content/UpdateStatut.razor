@@ -1,0 +1,69 @@
+﻿@attribute [Authorize(Policy = Permissions.Requisitions.Update)]
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon=@Icons.Material.Filled.Update Class="mr-3 mb-n1" Color="Color.Primary" /> Mise à jour de statut
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudPaper Class="pa-4 mb-2 mt-1" Outlined="true">
+            <EditForm Model="@Command" OnValidSubmit="SubmitAsync">
+                <MudGrid Class="mb-2">
+                    <MudItem xs="12">
+                        <MudInputLabel Class="pb-2">Numéro Requisition</MudInputLabel>
+                        <MudTextField T="string" For="@(() => Requisition.NumeroRequisition)" @bind-Value="Requisition.NumeroRequisition" Disabled="true" />
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudInputLabel Class="pb-2">Ancien Statut</MudInputLabel>
+                        <MudSelect Disabled="true" T="string" For="@(() => Requisition.StatutRequisition)" @bind-Value="Requisition.StatutRequisition">
+                            <MudSelectItem Value="@("Rejected")">Rejetée</MudSelectItem>
+                            <MudSelectItem Value="@("Cancelled")">Annulée</MudSelectItem>
+                            <MudSelectItem Value="@("Created")">Créée</MudSelectItem>
+                            <MudSelectItem Value="@("FormalitePrealable")">Formalité Préalable</MudSelectItem>
+                            <MudSelectItem Value="@("EnvoieEditeur")">Envoie Editeur</MudSelectItem>
+                            <MudSelectItem Value="@("RetourEditeur")">Publiée</MudSelectItem>
+                            <MudSelectItem Value="@("ProgrammationBornage")">Programmée</MudSelectItem>
+                            <MudSelectItem Value="@("Affichage")">Enoie affichage</MudSelectItem>
+                            <MudSelectItem Value="@("Bornage")">Bornage executé</MudSelectItem>
+                            <MudSelectItem Value="@("SecurisationFonciere")">Sécurisée</MudSelectItem>
+                            <MudSelectItem Value="@("PlanValidation")">Plan Validé</MudSelectItem>
+                            <MudSelectItem Value="@("BorderauAnalytique")">Edition BA</MudSelectItem>
+                            <MudSelectItem Value="@("ValidationBordereau")">BA Validé</MudSelectItem>
+                            <MudSelectItem Value="@("Opposition")">Opposition</MudSelectItem>
+                            <MudSelectItem Value="@("Immatriculation")">Titre Créé</MudSelectItem>
+                            <MudSelectItem Value="@("Conservation")">Conservation</MudSelectItem>
+                            <MudSelectItem Value="@("Contentieux")">Contentieux</MudSelectItem>
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudInputLabel Class="pb-2">Nouveau statut</MudInputLabel>
+                        <MudSelect T="string" For="@(() => Command.StatutRequisition)" @bind-Value="Command.StatutRequisition">
+                            <MudSelectItem Value="@("Rejected")">Rejetée</MudSelectItem>
+                            <MudSelectItem Value="@("Cancelled")">Annulée</MudSelectItem>
+                            <MudSelectItem Value="@("Created")">Créée</MudSelectItem>
+                            <MudSelectItem Value="@("FormalitePrealable")">Formalité Préalable</MudSelectItem>
+                            <MudSelectItem Value="@("EnvoieEditeur")">Envoie Editeur</MudSelectItem>
+                            <MudSelectItem Value="@("RetourEditeur")">Publiée</MudSelectItem>
+                            <MudSelectItem Value="@("ProgrammationBornage")">Programmée</MudSelectItem>
+                            <MudSelectItem Value="@("Affichage")">Enoie affichage</MudSelectItem>
+                            <MudSelectItem Value="@("Bornage")">Bornage executé</MudSelectItem>
+                            <MudSelectItem Value="@("SecurisationFonciere")">Sécurisée</MudSelectItem>
+                            <MudSelectItem Value="@("PlanValidation")">Plan Validé</MudSelectItem>
+                            <MudSelectItem Value="@("BorderauAnalytique")">Edition BA</MudSelectItem>
+                            <MudSelectItem Value="@("ValidationBordereau")">BA Validé</MudSelectItem>
+                            <MudSelectItem Value="@("Opposition")">Opposition</MudSelectItem>
+                            <MudSelectItem Value="@("Immatriculation")">Titre Créé</MudSelectItem>
+                            <MudSelectItem Value="@("Conservation")">Conservation</MudSelectItem>
+                            <MudSelectItem Value="@("Contentieux")">Contentieux</MudSelectItem>
+                        </MudSelect>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudButton FullWidth Variant="Variant.Filled" Disabled="@(string.IsNullOrEmpty(Command.StatutRequisition))" Color="Color.Primary" OnClick="SubmitAsync">
+                            Appliquer la modification
+                        </MudButton>
+                    </MudItem>
+                </MudGrid>
+            </EditForm>
+        </MudPaper>
+    </DialogContent>
+</MudDialog>

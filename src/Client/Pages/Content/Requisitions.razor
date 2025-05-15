@@ -1,0 +1,64 @@
+﻿@page "/"
+@using BlazorHero.CleanArchitecture.Application.Features.Requisitions;
+
+<HeroTitle Title="Réquisitions" Description="Liste des réquisitions" />
+<MudTable @ref="Table" T="RequisitionResponse" Hover="true" ServerData="ServerReload">
+    <ToolBarContent>
+        <div class="justify-center mud-text-align-center">
+            <MudGrid Spacing="1">
+                @if (_canImportRequisitions)
+                {
+                    <MudItem>
+                        <MudButton Variant="Variant.Filled" DropShadow="false" Color="Color.Primary" StartIcon="@Icons.Material.Filled.FileDownload" IconColor="Color.Surface" OnClick="Import">
+                            Importer
+                        </MudButton>
+                    </MudItem>
+                    <MudItem>
+                        <MudItem>
+                            <MudButton Variant="Variant.Filled" DropShadow="false" OnClick="@(_=>RefreshData(""))" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">Reload</MudButton>
+                        </MudItem>
+                    </MudItem>
+                }
+            </MudGrid>
+        </div>
+        <MudSpacer />
+        <MudTextField T="string" Immediate="true" Placeholder="Rechercher" Adornment="@Adornment.Start" ValueChanged="@(_=>RefreshData(_))" AdornmentIcon="@Icons.Material.Filled.Search"
+                      IconSize="Size.Medium" Class="mt-0 mb-3" />
+    </ToolBarContent>
+    <HeaderContent>
+        <MudTh><MudTableSortLabel SortLabel="NumeroRequisition" T="RequisitionResponse">Numéro</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="NomRequerant" T="RequisitionResponse">Nom</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="PrenomRequerant" T="RequisitionResponse">Prénoms</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="Localite" T="RequisitionResponse">Localité</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="DateRequisition" T="RequisitionResponse">Date Réquisition</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="BureauRequisition" T="RequisitionResponse">Bureau</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="TypePrestation" T="RequisitionResponse">Type Prestation</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="Statut" T="RequisitionResponse">Statut</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="Actions" T="RequisitionResponse">Actions</MudTableSortLabel></MudTh>
+    </HeaderContent>
+    <RowTemplate>
+        <MudTd DataLabel="NumeroRequisition">@context.NumeroRequisition</MudTd>
+        <MudTd DataLabel="NomRequerant">@context.NomRequerant</MudTd>
+        <MudTd DataLabel="PrenomRequerant">@context.PrenomRequerant</MudTd>
+        <MudTd DataLabel="Localite">@context.Localite</MudTd>
+        <MudTd DataLabel="DateRequisition">@context.DateRequisition</MudTd>
+        <MudTd DataLabel="BureauRequisition">@context.BureauRequisition</MudTd>
+        <MudTd DataLabel="TypePrestation">@context.TypePrestation</MudTd>
+        <MudTd DataLabel="Statut">@context.StatutRequisition</MudTd>
+        <MudTd DataLabel="Actions">
+            @if (_canUpdateRequisitions)
+            {
+                <MudButton Variant="Variant.Outlined" Color="Color.Primary" OnClick="@(()=>Update(context))" StartIcon="@Icons.Material.Filled.Update">Modifier</MudButton>
+            }
+        </MudTd>
+    </RowTemplate>
+    <NoRecordsContent>
+        <MudText>No matching records found</MudText>
+    </NoRecordsContent>
+    <LoadingContent>
+        <MudText>Loading</MudText>
+    </LoadingContent>
+    <PagerContent>
+        <MudTablePager />
+    </PagerContent>
+</MudTable>
