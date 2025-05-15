@@ -67,3 +67,7 @@ deploy_job:
     - scp -v -r ./out/* $TEST_DEPLOY_USER@$TEST_SERVER_ADDRESS:$TEST_HOME_DIR
   dependencies:
     - build
+  when:
+    manual
+  only:
+    - deploy-test
