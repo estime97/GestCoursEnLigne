@@ -1,0 +1,38 @@
+﻿@attribute [Authorize(Policy = Permissions.Requisitions.Import)]
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon=@Icons.Material.Filled.FileDownload Class="mr-3 mb-n1" Color="Color.Primary" /> Import Requisitions
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <EditForm Model="@Command" OnValidSubmit="Submit">
+            <MudGrid Class="mb-2">
+                <MudItem xs="12">
+                    <MudButton FullWidth DropShadow="false" Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">Exporter un modèle</MudButton>
+                </MudItem>
+                <MudItem xs="12">
+                    <MudButton FullWidth HtmlTag="label" Variant="Variant.Outlined" Color="Color.Primary" StartIcon="@Icons.Material.Filled.FileDownload" for="fileInput">
+                        Téleverser le fichier
+                    </MudButton>
+                </MudItem>
+                <MudItem xs="12">
+                    <InputFile id="fileInput" hidden OnChange="UploadFile" accept=".xlsx" />
+                    @if (_file != null)
+                    {
+                        <MudAlert ShowCloseIcon="true" CloseIconClicked="(() => _file = null)" OnClick="(() => _file = null)">@(_file != null ? _file.Name : "")</MudAlert>
+                    }
+                    else
+                    {
+                        <MudAlert Severity="Severity.Info">Veuillez téléverser un fichier Excel !</MudAlert>
+                    }
+                </MudItem>
+                <MudItem xs="12">
+                    <MudButton FullWidth Disabled="@(_file==null)" Variant="Variant.Filled" Color="Color.Primary" StartIcon="@Icons.Material.Filled.FileDownloadDone" ButtonType="ButtonType.Submit">
+                        Importer les données
+                    </MudButton>
+                </MudItem>
+            </MudGrid>
+        </EditForm>
+    </DialogContent>
+</MudDialog>

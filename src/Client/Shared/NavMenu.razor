@@ -1,0 +1,54 @@
+﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<NavMenu> _localizer
+@using System.Security.Claims
+@using BlazorHero.CleanArchitecture.Shared.Constants.Storage
+
+<UserCard />
+<MudNavMenu>
+    @if (_canViewRequisitions || _canImportRequisitions || _canUpdateRequisitions)
+    {
+        <MudNavLink Href="/" Icon="@Icons.Material.Outlined.Folder">
+            @_localizer["Réquisitions"]
+        </MudNavLink>
+    }
+
+    @if (_canViewUsers || _canViewRoles)
+    {
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Administrator"]</MudListSubheader>
+        @if (_canViewUsers)
+        {
+            <MudNavLink Href="/identity/users" Icon="@Icons.Material.Outlined.Person">
+                @_localizer["Users"]
+            </MudNavLink>
+        }
+        @if (_canViewRoles)
+        {
+            <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Person">@_localizer["Roles"]</MudNavLink>
+        }
+    }
+</MudNavMenu>
+
+@code {
+    private ClaimsPrincipal _authenticationStateProviderUser;
+
+    private bool _canViewRoles;
+    private bool _canViewUsers;
+    private bool _canViewRequisitions;
+    private bool _canImportRequisitions;
+    private bool _canUpdateRequisitions;
+
+    protected override async Task OnParametersSetAsync()
+    {
+        _authenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
+        var passwordIsExpired = await _localStorage.GetItemAsync<bool>(StorageConstants.Local.PassWordExpired);
+        if (passwordIsExpired)
+        {
+            _navigationManager.NavigateTo("/change-password/");
+        }
+
+        _canViewRoles = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Roles.View)).Succeeded && !passwordIsExpired;
+        _canViewUsers = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Users.View)).Succeeded && !passwordIsExpired;
+        _canViewRequisitions = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Requisitions.View)).Succeeded && !passwordIsExpired;
+        _canImportRequisitions = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Requisitions.Import)).Succeeded && !passwordIsExpired;
+        _canUpdateRequisitions = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Requisitions.Update)).Succeeded && !passwordIsExpired;
+    }
+}
