@@ -6,7 +6,7 @@
 <MudNavMenu>
     @if (_canViewRequisitions || _canImportRequisitions || _canUpdateRequisitions)
     {
-        <MudNavLink Href="/" Icon="@Icons.Material.Outlined.Folder">
+        <MudNavLink Href="/" Icon="@Icons.Material.Outlined.Folder" Match="NavLinkMatch.All">
             @_localizer["Réquisitions"]
         </MudNavLink>
     }
