@@ -27,6 +27,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
         private ClaimsPrincipal _authenticationStateProviderUser;
         private bool _canImportRequisitions;
         private bool _canUpdateRequisitions;
+        private bool _canViewRequisitions;
         protected async override Task OnInitializedAsync()
         {
             _authenticationStateProviderUser = await _stateProvider.GetAuthenticationStateProviderUserAsync();
@@ -37,6 +38,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
             }
             _canImportRequisitions = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Requisitions.Import)).Succeeded && !passwordIsExpired;
             _canUpdateRequisitions = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Requisitions.Update)).Succeeded && !passwordIsExpired;
+            _canViewRequisitions = (await _authorizationService.AuthorizeAsync(_authenticationStateProviderUser, Permissions.Requisitions.View)).Succeeded && !passwordIsExpired;
         }
         private async Task<TableData<RequisitionResponse>> ServerReload(TableState state, CancellationToken cancellationToken)
         {
@@ -104,6 +106,21 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
             {
                 RefreshData("");
             }
+        }
+        private async Task View(RequisitionResponse response)
+        {
+            var dialog = await _dialogService.ShowAsync<RequisitionDetails>("", parameters: new DialogParameters()
+            {
+                {nameof(RequisitionDetails.Requisition), response},
+            },
+            options: new DialogOptions()
+            {
+                CloseOnEscapeKey = true,
+                MaxWidth = MaxWidth.Small,
+                FullWidth = true,
+                BackdropClick = true
+            });
+            await dialog.Result;
         }
     }
 }
