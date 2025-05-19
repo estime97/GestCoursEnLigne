@@ -1,4 +1,6 @@
-﻿@attribute [Authorize(Policy = Permissions.Requisitions.Update)]
+﻿@using BlazorHero.CleanArchitecture.Domain.Enums
+@using BlazorHero.CleanArchitecture.Shared.Enums
+@attribute [Authorize(Policy = Permissions.Requisitions.Update)]
 <MudDialog>
     <TitleContent>
         <MudText Typo="Typo.h6">
@@ -16,46 +18,24 @@
                     <MudItem xs="12">
                         <MudInputLabel Class="pb-2">Ancien Statut</MudInputLabel>
                         <MudSelect Disabled="true" T="string" For="@(() => Requisition.StatutRequisition)" @bind-Value="Requisition.StatutRequisition">
-                            <MudSelectItem Value="@("Rejected")">Rejetée</MudSelectItem>
-                            <MudSelectItem Value="@("Cancelled")">Annulée</MudSelectItem>
-                            <MudSelectItem Value="@("Created")">Créée</MudSelectItem>
-                            <MudSelectItem Value="@("FormalitePrealable")">Formalité Préalable</MudSelectItem>
-                            <MudSelectItem Value="@("EnvoieEditeur")">Envoie Editeur</MudSelectItem>
-                            <MudSelectItem Value="@("RetourEditeur")">Publiée</MudSelectItem>
-                            <MudSelectItem Value="@("ProgrammationBornage")">Programmée</MudSelectItem>
-                            <MudSelectItem Value="@("Affichage")">Enoie affichage</MudSelectItem>
-                            <MudSelectItem Value="@("Bornage")">Bornage executé</MudSelectItem>
-                            <MudSelectItem Value="@("SecurisationFonciere")">Sécurisée</MudSelectItem>
-                            <MudSelectItem Value="@("PlanValidation")">Plan Validé</MudSelectItem>
-                            <MudSelectItem Value="@("BorderauAnalytique")">Edition BA</MudSelectItem>
-                            <MudSelectItem Value="@("ValidationBordereau")">BA Validé</MudSelectItem>
-                            <MudSelectItem Value="@("Opposition")">Opposition</MudSelectItem>
-                            <MudSelectItem Value="@("Immatriculation")">Titre Créé</MudSelectItem>
-                            <MudSelectItem Value="@("Conservation")">Conservation</MudSelectItem>
-                            <MudSelectItem Value="@("Contentieux")">Contentieux</MudSelectItem>
+                            @foreach (var item in Enum.GetValues(typeof(Statut)))
+                            {
+                                <MudSelectItem Value="@(EnumDescription.GetDescription((Statut)item))">@EnumDescription.GetDescription((Statut)item)</MudSelectItem>
+                            }
                         </MudSelect>
                     </MudItem>
                     <MudItem xs="12">
                         <MudInputLabel Class="pb-2">Nouveau statut</MudInputLabel>
                         <MudSelect T="string" For="@(() => Command.StatutRequisition)" @bind-Value="Command.StatutRequisition">
-                            <MudSelectItem Value="@("Rejected")">Rejetée</MudSelectItem>
-                            <MudSelectItem Value="@("Cancelled")">Annulée</MudSelectItem>
-                            <MudSelectItem Value="@("Created")">Créée</MudSelectItem>
-                            <MudSelectItem Value="@("FormalitePrealable")">Formalité Préalable</MudSelectItem>
-                            <MudSelectItem Value="@("EnvoieEditeur")">Envoie Editeur</MudSelectItem>
-                            <MudSelectItem Value="@("RetourEditeur")">Publiée</MudSelectItem>
-                            <MudSelectItem Value="@("ProgrammationBornage")">Programmée</MudSelectItem>
-                            <MudSelectItem Value="@("Affichage")">Enoie affichage</MudSelectItem>
-                            <MudSelectItem Value="@("Bornage")">Bornage executé</MudSelectItem>
-                            <MudSelectItem Value="@("SecurisationFonciere")">Sécurisée</MudSelectItem>
-                            <MudSelectItem Value="@("PlanValidation")">Plan Validé</MudSelectItem>
-                            <MudSelectItem Value="@("BorderauAnalytique")">Edition BA</MudSelectItem>
-                            <MudSelectItem Value="@("ValidationBordereau")">BA Validé</MudSelectItem>
-                            <MudSelectItem Value="@("Opposition")">Opposition</MudSelectItem>
-                            <MudSelectItem Value="@("Immatriculation")">Titre Créé</MudSelectItem>
-                            <MudSelectItem Value="@("Conservation")">Conservation</MudSelectItem>
-                            <MudSelectItem Value="@("Contentieux")">Contentieux</MudSelectItem>
+                            @foreach (var item in Enum.GetValues(typeof(Statut)))
+                            {
+                                <MudSelectItem Value="@(EnumDescription.GetDescription((Statut)item))">@EnumDescription.GetDescription((Statut)item)</MudSelectItem>
+                            }
                         </MudSelect>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudInputLabel Class="pb-2">Motif</MudInputLabel>
+                        <MudTextField T="string" For="@(() => Command.MotifRejet)" @bind-Value="Command.MotifRejet" Variant="Variant.Filled" />
                     </MudItem>
                     <MudItem xs="12">
                         <MudButton FullWidth Variant="Variant.Filled" Disabled="@(string.IsNullOrEmpty(Command.StatutRequisition))" Color="Color.Primary" OnClick="SubmitAsync">
