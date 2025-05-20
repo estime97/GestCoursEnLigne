@@ -18,7 +18,7 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1
         /// </summary>
         /// <param name="Requisition"></param>
         /// <returns></returns>
-        [Authorize(Policy = Permissions.Requisitions.Import)]
+        [Authorize(Policy = Permissions.Requisitions.Synchronize)]
         [HttpPost]
         public async Task<IActionResult> Synchronize([FromBody, Required] RequisitionResponse Requisition)
         {
