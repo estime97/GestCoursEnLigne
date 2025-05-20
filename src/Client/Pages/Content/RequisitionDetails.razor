@@ -1,0 +1,58 @@
+﻿@using BlazorHero.CleanArchitecture.Application.Features.Requisitions
+
+<MudDialog>
+    <TitleContent>
+        <MudText Typo="Typo.h6">
+            <MudIcon Icon=@Icons.Material.Filled.Info Class="mr-3 mb-n1" Color="Color.Primary" /> Détails Réquisition
+        </MudText>
+    </TitleContent>
+    <DialogContent>
+        <MudPaper Outlined Class="pa-4 mb-3">
+            @foreach (var item in Items)
+            {
+                <MudGrid Class="py-2">
+                    <MudItem xs="6">
+                        <MudText Typo="Typo.subtitle2"><b>@item.Label</b></MudText>
+                    </MudItem>
+                    <MudItem xs="6">
+                        <MudText Typo="Typo.body2">: @item.Value</MudText>
+                    </MudItem>
+                </MudGrid>
+                if (Items.IndexOf(item) != (Items.Count - 1))
+                {
+                    <MudDivider />
+                }
+            }
+        </MudPaper>
+    </DialogContent>
+</MudDialog>
+
+@code
+{
+    [Parameter] public RequisitionResponse Requisition { get; set; }
+
+    private List<(string Label, string Value)> Items => new()
+    {
+        ("Numéro", Requisition.NumeroRequisition),
+        ("Position actuelle", Requisition.StatutRequisition),
+        ("Type Prestation", Requisition.TypePrestation),
+        ("Nom", Requisition.NomRequerant),
+        ("Prénom", Requisition.PrenomRequerant),
+        ("Localité", Requisition.Localite),
+        ("Date Création", Requisition.DateRequisition),
+        ("Région", Requisition.Region),
+        ("Bureau", Requisition.BureauRequisition),
+        ("Géomètre", Requisition.Geometre),
+        ("Date Bornage", Requisition.DateBornage),
+        ("Équipe Bornage", Requisition.EquipeBornage),
+        ("Date Transmission", Requisition.DateTransmission),
+        ("Motif Rejet", Requisition.MotifRejet),
+        ("Numéro JORT", Requisition.NumeroJORT),
+        ("Date Insertion JORT", Requisition.DateInsertionJORT),
+        ("Date Affichage", Requisition.DateAffichage),
+        ("Date Publication", Requisition.DatePublication),
+        ("Numéro Titre", Requisition.NumeroTitre),
+        ("Date Signature", Requisition.DateSigned),
+        ("Date Retrait", Requisition.DateRetrait)
+    };
+}
