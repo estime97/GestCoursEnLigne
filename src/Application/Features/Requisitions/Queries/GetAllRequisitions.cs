@@ -29,16 +29,13 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Queries
                 {
                     search = search.ToLower();
 
-                    Criteria = Criteria.And(_ => _.NumeroRequisition.ToLower().Contains(search) ||
-                        _.NomRequerant.ToLower().Contains(search) ||
-                        _.PrenomRequerant.ToLower().Contains(search) ||
-                        _.Localite.ToLower().Contains(search) ||
-                        _.BureauRequisition.ToLower().Contains(search) ||
-                        _.Geometre.ToLower().Contains(search) ||
-                        _.EquipeBornage.ToLower().Contains(search) ||
-                        _.TypePrestation.ToLower().Contains(search) ||
-                        _.NumeroJORT.ToLower().Contains(search) ||
-                        _.NumeroTitre.ToLower().Contains(search));
+                    Criteria = Criteria.And(_ =>
+                    _.NumeroRequisition.ToLower().Contains(search) ||
+                    _.NumeroTitreFoncier.ToLower().Contains(search) ||
+                    _.NomRequerant.ToLower().Contains(search) ||
+                    _.PrenomRequerant.ToLower().Contains(search) ||
+                    _.Bureau.ToLower().Contains(search) ||
+                    _.Statut.ToLower().Contains(search));
                 }
             }
         }
@@ -58,26 +55,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Queries
                     .Select(_ => new RequisitionResponse()
                     {
                         NumeroRequisition = _.NumeroRequisition,
+                        NumeroTitreFoncier = _.NumeroTitreFoncier,
+                        DateRequisition = _.DateRequisition,
                         NomRequerant = _.NomRequerant,
                         PrenomRequerant = _.PrenomRequerant,
-                        Localite = _.Localite,
-                        BureauRequisition = _.BureauRequisition,
-                        Geometre = _.Geometre,
-                        EquipeBornage = _.EquipeBornage,
-                        TypePrestation = _.TypePrestation,
-                        NumeroJORT = _.NumeroJORT,
-                        NumeroTitre = _.NumeroTitre,
-                        DateAffichage = _.DateAffichage,
-                        DateBornage = _.DateBornage,
-                        DateInsertionJORT = _.DateInsertionJORT,
-                        DatePublication = _.DatePublication,
-                        DateRequisition = _.DateRequisition,
-                        DateRetrait = _.DateRetrait,
-                        DateSigned = _.DateSigned,
-                        DateTransmission = _.DateTransmission,
-                        StatutRequisition = _.StatutRequisition,
+                        Bureau = _.Bureau,
                         Region = _.Region,
-                        MotifRejet = _.MotifRejet
+                        Statut = _.Statut,
+                        MotifRejet = _.MotifRejet,
+                        PiecesManquantes = _.PiecesManquantes,
+                        DateCreation = _.DateCreation
                     })
                     .ToPaginatedListAsync(request.PageNumber, request.PageSize);
             }

@@ -26,9 +26,9 @@ namespace BlazorHero.CleanArchitecture.Domain.Enums
         SecurisationFonciere,
         [Description("Plan Validation")]
         PlanValidation,
-        [Description("Bordereau Analytique")]
+        [Description("Traité et en instance de la saisie des BA")]
         BorderauAnalytique,
-        [Description("Validation Bordereau")]
+        [Description("BA Validé")]
         ValidationBordereau,
         [Description("Opposition")]
         Opposition,
@@ -44,9 +44,9 @@ namespace BlazorHero.CleanArchitecture.Domain.Enums
         EnAttenteTraitement,
         [Description("Rejeté et en instance d'envoie au cadastre")]
         RejeteInstanceEnvoieCadastre,
-        [Description("Rejeté et en instance de transmission")]
+        [Description("Rejeté et en instance de transmission à Tsévié")]
         RejeteInstanceTransmission,
-        [Description("Rejeté et en instance de retour au contentieux")]
+        [Description("Rejeté et en instance de transmission au contentieux")]
         RejeteInstanceRetourContentieux,
         [Description("Rejeté et en instance de régularisation")]
         RejeteInstanceRegularisation,
@@ -61,6 +61,12 @@ namespace BlazorHero.CleanArchitecture.Domain.Enums
         [Description("Plan Validé")]
         PlanValide,
         [Description("Main Levée")]
-        MainLevee
+        MainLevee,
+        [Description("Titre Généré")]
+        TitreGenerated,
+        [Description("Titre Signé")]
+        TitreSigned,
+        [Description("Titre Retiré")]
+        TitreRetired
     }
 }

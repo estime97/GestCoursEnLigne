@@ -26,26 +26,16 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services
                 mappers: new Dictionary<string, Func<RequisitionResponse, object>>
                 {
                     { _localizer["NumeroRequisition"], item => item.NumeroRequisition },
+                    { _localizer["NumeroTitreFoncier"], item => item.NumeroTitreFoncier },
+                    { _localizer["DateRequisition"], item => item.DateRequisition },
                     { _localizer["NomRequerant"], item => item.NomRequerant },
                     { _localizer["PrenomRequerant"], item => item.PrenomRequerant },
-                    { _localizer["Localite"], item => item.Localite },
-                    { _localizer["DateRequisition"], item => item.DateRequisition },
-                    { _localizer["BureauRequisition"], item => item.BureauRequisition },
-                    { _localizer["Geometre"], item => item.Geometre },
-                    { _localizer["DateBornage"], item => item.DateBornage },
-                    { _localizer["EquipeBornage"], item => item.EquipeBornage },
-                    { _localizer["DateTransmission"], item => item.DateTransmission },
-                    { _localizer["TypePrestation"], item => item.TypePrestation },
-                    { _localizer["NumeroJORT"], item => item.NumeroJORT },
-                    { _localizer["DateInsertionJORT"], item => item.DateInsertionJORT },
-                    { _localizer["DateAffichage"], item => item.DateAffichage },
-                    { _localizer["DatePublication"], item => item.DatePublication },
-                    { _localizer["NumeroTitre"], item => item.NumeroTitre },
-                    { _localizer["DateSigned"], item => item.DateSigned },
-                    { _localizer["DateRetrait"], item => item.DateRetrait },
-                    { _localizer["StatutRequisition"], item => item.StatutRequisition },
+                    { _localizer["Bureau"], item => item.Bureau },
                     { _localizer["Region"], item => item.Region },
+                    { _localizer["Statut"], item => item.Statut },
                     { _localizer["MotifRejet"], item => item.MotifRejet },
+                    { _localizer["PiecesManquantes"], item => item.PiecesManquantes },
+                    { _localizer["DateCreation"], item => item.DateCreation }
                 });
 
             return result;

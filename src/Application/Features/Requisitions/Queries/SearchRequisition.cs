@@ -32,26 +32,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Queries
                     return await Result<RequisitionResponse>.SuccessAsync(new RequisitionResponse()
                     {
                         NumeroRequisition = response.NumeroRequisition,
+                        NumeroTitreFoncier = response.NumeroTitreFoncier,
+                        DateRequisition = response.DateRequisition,
                         NomRequerant = response.NomRequerant,
                         PrenomRequerant = response.PrenomRequerant,
-                        Localite = response.Localite,
-                        BureauRequisition = response.BureauRequisition,
-                        Geometre = response.Geometre,
-                        EquipeBornage = response.EquipeBornage,
-                        TypePrestation = response.TypePrestation,
-                        NumeroJORT = response.NumeroJORT,
-                        NumeroTitre = response.NumeroTitre,
-                        DateTransmission = response.DateTransmission,
-                        DateBornage = response.DateBornage,
-                        DateInsertionJORT = response.DateInsertionJORT,
-                        DatePublication = response.DatePublication,
-                        DateRequisition = response.DateRequisition,
-                        DateRetrait = response.DateRetrait,
-                        DateSigned = response.DateSigned,
-                        StatutRequisition = GetMessageRequerant(response),
-                        DateAffichage = response.DateAffichage,
+                        Bureau = response.Bureau,
                         Region = response.Region,
-                        MotifRejet = response.MotifRejet
+                        Statut = GetMessageRequerant(response),
+                        MotifRejet = response.MotifRejet,
+                        PiecesManquantes = response.PiecesManquantes,
+                        DateCreation = response.DateCreation,
                     }, "Requisition found.");
                 }
                 return await Result<RequisitionResponse>.FailAsync("Requisition not found.");
@@ -59,7 +49,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Queries
 
             private string GetMessageRequerant(Requisition requisition)
             {
-                return requisition.StatutRequisition switch
+                return requisition.Statut switch
                 {
                     "Rejected" => "VOTRE RÉQUISITION  A ÉTÉ REJETÉE EN RAISON DE " + requisition.MotifRejet + " " + requisition.Region,
 
@@ -71,14 +61,14 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Queries
 
                     "EnvoieEditeur" => "VOTRE RÉQUISITION EST EN COURS DE PUBLICATION AU JOURNAL OFFICIEL",
 
-                    "RetourEditeur" => "VOTRE RÉQUISITION EST PUBLIÉE AU JOURNAL OFFICIEL N° " + requisition.NumeroJORT,
+                    "RetourEditeur" => "VOTRE RÉQUISITION EST PUBLIÉE AU JOURNAL OFFICIEL",
 
-                    "ProgrammationBornage" => "VOTRE RÉQUISITION EST PROGRAMMÉE POUR LE BORNAGE LE " + requisition.DateBornage + " AVEC LE GÉOMETRE " + requisition.Geometre +
+                    "ProgrammationBornage" => "VOTRE RÉQUISITION EST PROGRAMMÉE POUR LE BORNAGE " +
                     " A " + requisition.Region + ". VEUILLEZ PRENDRE TOUTES LES MESURES NÉCÉSSAIRES POUR EVITER LE BORNAGE NUL",
 
                     "Affichage" => "VOTRE RÉQUISITION EST PASSÉE A L'ÉTAPE AFFICHAGE. VEUILLEZ PASSER AU BUREAU DES FOMALITES PREALABLES DE LA DCCF " + requisition.Region + " POUR RETIRER LES ACCUSÉS",
 
-                    "Bornage" => "LE BORNAGE DE VOTRE RÉQUISITION PRÉVU POUR LE " + requisition.DateBornage + " A ÉTÉ EXECUTÉ",
+                    "Bornage" => "LE BORNAGE DE VOTRE RÉQUISITION PRÉVU A ÉTÉ EXECUTÉ",
 
                     "SecurisationFonciere" => "VOTRE RÉQUISITION EST EN COURS DE SÉCURISATION. CONTACTEZ LES SERVICES DE LA DCCF " + requisition.Region,
 

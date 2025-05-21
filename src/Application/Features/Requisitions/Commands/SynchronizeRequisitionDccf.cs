@@ -31,25 +31,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
                 var requisition = await _unitOfWork.Repository<Requisition>().Entities.FirstOrDefaultAsync(_ => _.NumeroRequisition == command.Requisition.NumeroRequisition);
                 if (requisition != null)
                 {
-                    requisition.StatutRequisition = command.Requisition.StatutRequisition;
+                    requisition.NumeroTitreFoncier = command.Requisition.NumeroTitreFoncier;
+                    requisition.DateRequisition = command.Requisition.DateRequisition;
                     requisition.NomRequerant = command.Requisition.NomRequerant;
                     requisition.PrenomRequerant = command.Requisition.PrenomRequerant;
-                    requisition.Localite = command.Requisition.Localite;
-                    requisition.DateRequisition = command.Requisition.BureauRequisition;
-                    requisition.Geometre = command.Requisition.DateBornage;
-                    requisition.EquipeBornage = command.Requisition.EquipeBornage;
-                    requisition.DateTransmission = command.Requisition.DateTransmission;
-                    requisition.TypePrestation = command.Requisition.TypePrestation;
-                    requisition.NumeroJORT = command.Requisition.NumeroJORT;
-                    requisition.DateInsertionJORT = command.Requisition.DateInsertionJORT;
-                    requisition.DateAffichage = command.Requisition.DateAffichage;
-                    requisition.DatePublication = command.Requisition.DatePublication;
-                    requisition.NumeroTitre = command.Requisition.NumeroTitre;
-                    requisition.DateSigned = command.Requisition.DateSigned;
-                    requisition.DateRetrait = command.Requisition.DateRetrait;
-                    requisition.StatutRequisition = command.Requisition.StatutRequisition;
+                    requisition.Bureau = command.Requisition.Bureau;
                     requisition.Region = command.Requisition.Region;
+                    requisition.Statut = command.Requisition.Statut;
                     requisition.MotifRejet = command.Requisition.MotifRejet;
+                    requisition.PiecesManquantes = command.Requisition.PiecesManquantes;
+                    requisition.DateCreation = command.Requisition.DateCreation;
                     await _unitOfWork.Repository<Requisition>().UpdateAsync(requisition);
                     await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllRequisitions);
                     return await Result<string>.SuccessAsync(requisition.NumeroRequisition, "Requisition updated successfully.");
@@ -57,26 +48,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
                 var response = await _unitOfWork.Repository<Requisition>().AddAsync(new Requisition()
                 {
                     NumeroRequisition = command.Requisition.NumeroRequisition,
+                    NumeroTitreFoncier = command.Requisition.NumeroTitreFoncier,
+                    DateRequisition = command.Requisition.DateRequisition,
                     NomRequerant = command.Requisition.NomRequerant,
                     PrenomRequerant = command.Requisition.PrenomRequerant,
-                    Localite = command.Requisition.Localite,
-                    DateRequisition = command.Requisition.DateRequisition,
-                    BureauRequisition = command.Requisition.BureauRequisition,
-                    Geometre = command.Requisition.Geometre,
-                    DateBornage = command.Requisition.DateBornage,
-                    EquipeBornage = command.Requisition.EquipeBornage,
-                    DateTransmission = command.Requisition.DateTransmission,
-                    TypePrestation = command.Requisition.TypePrestation,
-                    NumeroJORT = command.Requisition.NumeroJORT,
-                    DateInsertionJORT = command.Requisition.DateInsertionJORT,
-                    DateAffichage = command.Requisition.DateAffichage,
-                    DatePublication = command.Requisition.DatePublication,
-                    NumeroTitre = command.Requisition.NumeroTitre,
-                    DateSigned = command.Requisition.DateSigned,
-                    DateRetrait = command.Requisition.DateRetrait,
-                    StatutRequisition = command.Requisition.StatutRequisition,
+                    Bureau = command.Requisition.Bureau,
                     Region = command.Requisition.Region,
-                    MotifRejet = command.Requisition.MotifRejet
+                    Statut = command.Requisition.Statut,
+                    MotifRejet = command.Requisition.MotifRejet,
+                    PiecesManquantes = command.Requisition.PiecesManquantes,
+                    DateCreation = command.Requisition.DateCreation,
                 });
                 await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllRequisitions);
                 return await Result<string>.SuccessAsync(response.NumeroRequisition, "Requisition saved successfully.");

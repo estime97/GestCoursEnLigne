@@ -48,6 +48,14 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
                             (row, item) => item.NumeroRequisition = row[_localizer["NumeroRequisition"]].ToString()
                         },
                         {
+                            _localizer["NumeroTitreFoncier"],
+                            (row, item) => item.NumeroTitreFoncier = row[_localizer["NumeroTitreFoncier"]].ToString()
+                        },
+                        {
+                            _localizer["DateRequisition"],
+                            (row, item) => item.DateRequisition = row[_localizer["DateRequisition"]].ToString()
+                        },
+                        {
                             _localizer["NomRequerant"],
                             (row, item) => item.NomRequerant = row[_localizer["NomRequerant"]].ToString()
                         },
@@ -56,77 +64,29 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
                             (row, item) => item.PrenomRequerant = row[_localizer["PrenomRequerant"]].ToString()
                         },
                         {
-                            _localizer["Localite"],
-                            (row, item) => item.Localite = row[_localizer["Localite"]].ToString()
-                        },
-                        {
-                            _localizer["DateRequisition"],
-                            (row, item) => item.DateRequisition = row[_localizer["DateRequisition"]].ToString()
-                        },
-                        {
-                            _localizer["BureauRequisition"],
-                            (row, item) => item.BureauRequisition = row[_localizer["BureauRequisition"]].ToString()
-                        },
-                        {
-                            _localizer["Geometre"],
-                            (row, item) => item.Geometre = row[_localizer["Geometre"]].ToString()
-                        },
-                        {
-                            _localizer["DateBornage"],
-                            (row, item) => item.DateBornage = row[_localizer["DateBornage"]].ToString()
-                        },
-                        {
-                            _localizer["EquipeBornage"],
-                            (row, item) => item.EquipeBornage = row[_localizer["EquipeBornage"]].ToString()
-                        },
-                        {
-                            _localizer["DateTransmission"],
-                            (row, item) => item.DateTransmission = row[_localizer["DateTransmission"]].ToString()
-                        },
-                        {
-                            _localizer["TypePrestation"],
-                            (row, item) => item.TypePrestation = row[_localizer["TypePrestation"]].ToString()
-                        },
-                        {
-                            _localizer["NumeroJORT"],
-                            (row, item) => item.NumeroJORT = row[_localizer["NumeroJORT"]].ToString()
-                        },
-                        {
-                            _localizer["DateInsertionJORT"],
-                            (row, item) => item.DateInsertionJORT = row[_localizer["DateInsertionJORT"]].ToString()
-                        },
-                        {
-                            _localizer["DateAffichage"],
-                            (row, item) => item.DateAffichage = row[_localizer["DateAffichage"]].ToString()
-                        },
-                        {
-                            _localizer["DatePublication"],
-                            (row, item) => item.DatePublication = row[_localizer["DatePublication"]].ToString()
-                        },
-                        {
-                            _localizer["NumeroTitre"],
-                            (row, item) => item.NumeroTitre = row[_localizer["NumeroTitre"]].ToString()
-                        },
-                        {
-                            _localizer["DateSigned"],
-                            (row, item) => item.DateSigned = row[_localizer["DateSigned"]].ToString()
-                        },
-                        {
-                            _localizer["DateRetrait"],
-                            (row, item) => item.DateRetrait = row[_localizer["DateRetrait"]].ToString()
-                        },
-                        {
-                            _localizer["StatutRequisition"],
-                            (row, item) => item.StatutRequisition = row[_localizer["StatutRequisition"]].ToString()
+                            _localizer["Bureau"],
+                            (row, item) => item.Bureau = row[_localizer["Bureau"]].ToString()
                         },
                         {
                             _localizer["Region"],
                             (row, item) => item.Region = row[_localizer["Region"]].ToString()
                         },
                         {
+                            _localizer["Statut"],
+                            (row, item) => item.Statut = row[_localizer["Statut"]].ToString()
+                        },
+                        {
                             _localizer["MotifRejet"],
                             (row, item) => item.MotifRejet = row[_localizer["MotifRejet"]].ToString()
                         },
+                        {
+                            _localizer["PiecesManquantes"],
+                            (row, item) => item.PiecesManquantes = row[_localizer["PiecesManquantes"]].ToString()
+                        },
+                        {
+                            _localizer["DateCreation"],
+                            (row, item) => item.DateCreation = row[_localizer["DateCreation"]].ToString()
+                        }
 
                     }, _localizer["Requisitions"]);
 
@@ -144,26 +104,16 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
                         await _unitOfWork.Repository<Requisition>().AddAsync(new Requisition()
                         {
                             NumeroRequisition = requisition.NumeroRequisition,
+                            NumeroTitreFoncier = requisition.NumeroTitreFoncier,
+                            DateRequisition = requisition.DateRequisition,
                             NomRequerant = requisition.NomRequerant,
                             PrenomRequerant = requisition.PrenomRequerant,
-                            Localite = requisition.Localite,
-                            DateRequisition = requisition.DateRequisition,
-                            BureauRequisition = requisition.BureauRequisition,
-                            Geometre = requisition.Geometre,
-                            DateBornage = requisition.DateBornage,
-                            EquipeBornage = requisition.EquipeBornage,
-                            DateTransmission = requisition.DateTransmission,
-                            TypePrestation = requisition.TypePrestation,
-                            NumeroJORT = requisition.NumeroJORT,
-                            DateInsertionJORT = requisition.DateInsertionJORT,
-                            DateAffichage = requisition.DateAffichage,
-                            DatePublication = requisition.DatePublication,
-                            NumeroTitre = requisition.NumeroTitre,
-                            DateSigned = requisition.DateSigned,
-                            DateRetrait = requisition.DateRetrait,
-                            StatutRequisition = requisition.StatutRequisition,
+                            Bureau = requisition.Bureau,
                             Region = requisition.Region,
-                            MotifRejet = requisition.MotifRejet
+                            Statut = requisition.Statut,
+                            MotifRejet = requisition.MotifRejet,
+                            PiecesManquantes = requisition.PiecesManquantes,
+                            DateCreation = requisition.DateCreation
                         });
                         nbRequisitionsImport++;
                     }

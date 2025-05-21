@@ -33,26 +33,16 @@
 
     private List<(string Label, string Value)> Items => new()
     {
-        ("Numéro", Requisition.NumeroRequisition),
-        ("Position actuelle", Requisition.StatutRequisition),
-        ("Type Prestation", Requisition.TypePrestation),
+        ("Numéro Réquisition", Requisition.NumeroRequisition),
+        ("Numéro Titre Foncier", Requisition.NumeroTitreFoncier),
+        ("Position actuelle", Requisition.Statut),
+        ("Date Réquisition", Requisition.DateRequisition),
         ("Nom", Requisition.NomRequerant),
         ("Prénom", Requisition.PrenomRequerant),
-        ("Localité", Requisition.Localite),
-        ("Date Création", Requisition.DateRequisition),
+        ("Bureau", Requisition.Bureau),
         ("Région", Requisition.Region),
-        ("Bureau", Requisition.BureauRequisition),
-        ("Géomètre", Requisition.Geometre),
-        ("Date Bornage", Requisition.DateBornage),
-        ("Équipe Bornage", Requisition.EquipeBornage),
-        ("Date Transmission", Requisition.DateTransmission),
+        ("Date Création", Requisition.DateCreation),
         ("Motif Rejet", Requisition.MotifRejet),
-        ("Numéro JORT", Requisition.NumeroJORT),
-        ("Date Insertion JORT", Requisition.DateInsertionJORT),
-        ("Date Affichage", Requisition.DateAffichage),
-        ("Date Publication", Requisition.DatePublication),
-        ("Numéro Titre", Requisition.NumeroTitre),
-        ("Date Signature", Requisition.DateSigned),
-        ("Date Retrait", Requisition.DateRetrait)
+        ("Pièces Manquantes", Requisition.PiecesManquantes)
     };
 }

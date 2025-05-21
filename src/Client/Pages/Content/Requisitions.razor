@@ -26,25 +26,25 @@
                       IconSize="Size.Medium" Class="mt-0 mb-3" />
     </ToolBarContent>
     <HeaderContent>
-        <MudTh><MudTableSortLabel SortLabel="NumeroRequisition" T="RequisitionResponse">Numéro</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="NumeroRequisition" T="RequisitionResponse">N° Requisition</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="NumeroTitre" T="RequisitionResponse">N° Titre</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="NomRequerant" T="RequisitionResponse">Nom</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="PrenomRequerant" T="RequisitionResponse">Prénoms</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortLabel="Localite" T="RequisitionResponse">Localité</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="Region" T="RequisitionResponse">Région</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="Bureau" T="RequisitionResponse">Bureau</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="DateRequisition" T="RequisitionResponse">Date Réquisition</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortLabel="BureauRequisition" T="RequisitionResponse">Bureau</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortLabel="TypePrestation" T="RequisitionResponse">Type Prestation</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortLabel="Statut" T="RequisitionResponse">Position</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="Statut" T="RequisitionResponse">Statut</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="Actions" T="RequisitionResponse">Actions</MudTableSortLabel></MudTh>
     </HeaderContent>
     <RowTemplate>
         <MudTd DataLabel="NumeroRequisition">@context.NumeroRequisition</MudTd>
+        <MudTd DataLabel="NumeroTitre">@context.NumeroTitreFoncier</MudTd>
         <MudTd DataLabel="NomRequerant">@context.NomRequerant</MudTd>
         <MudTd DataLabel="PrenomRequerant">@context.PrenomRequerant</MudTd>
-        <MudTd DataLabel="Localite">@context.Localite</MudTd>
+        <MudTd DataLabel="Region">@context.Region</MudTd>
+        <MudTd DataLabel="Bureau">@context.Bureau</MudTd>
         <MudTd DataLabel="DateRequisition">@context.DateRequisition</MudTd>
-        <MudTd DataLabel="BureauRequisition">@context.BureauRequisition</MudTd>
-        <MudTd DataLabel="TypePrestation">@context.TypePrestation</MudTd>
-        <MudTd DataLabel="Statut"><MudChip T="string" Color="Color.Dark">@context.StatutRequisition</MudChip></MudTd>
+        <MudTd DataLabel="Statut"><MudChip T="string" Color="Color.Dark">@context.Statut</MudChip></MudTd>
         <MudTd DataLabel="Actions">
             <MudButtonGroup Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">
                 @if (_canUpdateRequisitions)

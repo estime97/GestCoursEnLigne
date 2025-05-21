@@ -22,7 +22,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
             var response = await suiviRequisitionManager.UpdateRequisition(new UpdateRequisition.Command()
             {
                 NumeroRequisition = Requisition.NumeroRequisition,
-                StatutRequisition = Command.StatutRequisition
+                Statut = Command.Statut
             });
             if (response.Succeeded)
             {

@@ -17,7 +17,7 @@
                     </MudItem>
                     <MudItem xs="12">
                         <MudInputLabel Class="pb-2">Ancien Statut</MudInputLabel>
-                        <MudSelect Disabled="true" T="string" For="@(() => Requisition.StatutRequisition)" @bind-Value="Requisition.StatutRequisition">
+                        <MudSelect Disabled="true" T="string" For="@(() => Requisition.Statut)" @bind-Value="Requisition.Statut">
                             @foreach (var item in Enum.GetValues(typeof(Statut)))
                             {
                                 <MudSelectItem Value="@(EnumDescription.GetDescription((Statut)item))">@EnumDescription.GetDescription((Statut)item)</MudSelectItem>
@@ -26,7 +26,7 @@
                     </MudItem>
                     <MudItem xs="12">
                         <MudInputLabel Class="pb-2">Nouveau statut</MudInputLabel>
-                        <MudSelect T="string" For="@(() => Command.StatutRequisition)" @bind-Value="Command.StatutRequisition">
+                        <MudSelect T="string" For="@(() => Command.Statut)" @bind-Value="Command.Statut">
                             @foreach (var item in Enum.GetValues(typeof(Statut)))
                             {
                                 <MudSelectItem Value="@(EnumDescription.GetDescription((Statut)item))">@EnumDescription.GetDescription((Statut)item)</MudSelectItem>
@@ -38,7 +38,7 @@
                         <MudTextField T="string" For="@(() => Command.MotifRejet)" @bind-Value="Command.MotifRejet" Variant="Variant.Filled" />
                     </MudItem>
                     <MudItem xs="12">
-                        <MudButton FullWidth Variant="Variant.Filled" Disabled="@(string.IsNullOrEmpty(Command.StatutRequisition))" Color="Color.Primary" OnClick="SubmitAsync">
+                        <MudButton FullWidth Variant="Variant.Filled" Disabled="@(string.IsNullOrEmpty(Command.Statut))" Color="Color.Primary" OnClick="SubmitAsync">
                             Appliquer la modification
                         </MudButton>
                     </MudItem>
