@@ -17,7 +17,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
         public record Command : IRequest<Result<string>>
         {
             public string NumeroRequisition { get; set; }
-            public string StatutRequisition { get; set; }
+            public string Statut { get; set; }
             public string? MotifRejet { get; set; }
         }
 
@@ -37,7 +37,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
                 {
                     return await Result<string>.FailAsync("Requisition not found.");
                 }
-                response.StatutRequisition = command.StatutRequisition;
+                response.Statut = command.Statut;
                 response.MotifRejet = command.MotifRejet ?? response.MotifRejet;
                 await _unitOfWork.Repository<Requisition>().UpdateAsync(response);
                 await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllRequisitions);
