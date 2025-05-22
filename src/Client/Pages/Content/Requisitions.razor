@@ -44,7 +44,7 @@
         <MudTd DataLabel="Region">@context.Region</MudTd>
         <MudTd DataLabel="Bureau">@context.Bureau</MudTd>
         <MudTd DataLabel="DateRequisition">@context.DateRequisition</MudTd>
-        <MudTd DataLabel="Statut"><MudChip T="string" Color="Color.Dark">@context.Statut</MudChip></MudTd>
+        <MudTd DataLabel="Statut"><MudChip T="string" Color="Color.Primary" Variant="Variant.Text">@context.Statut</MudChip></MudTd>
         <MudTd DataLabel="Actions">
             <MudButtonGroup Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">
                 @if (_canUpdateRequisitions)
