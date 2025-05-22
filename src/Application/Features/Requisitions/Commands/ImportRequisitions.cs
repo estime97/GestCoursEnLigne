@@ -53,7 +53,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
                         },
                         {
                             _localizer["DateRequisition"],
-                            (row, item) => item.DateRequisition = row[_localizer["DateRequisition"]].ToString()
+                            (row, item) => item.DateRequisition = DateTime.Parse(row[_localizer["DateRequisition"]].ToString()).ToString("dd/MM/yyyy")
                         },
                         {
                             _localizer["NomRequerant"],
@@ -85,7 +85,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
                         },
                         {
                             _localizer["DateCreation"],
-                            (row, item) => item.DateCreation = row[_localizer["DateCreation"]].ToString()
+                            (row, item) => item.DateCreation = DateTime.Parse(row[_localizer["DateCreation"]].ToString()).ToString("dd/MM/yyyy")
                         }
 
                     }, _localizer["Requisitions"]);
