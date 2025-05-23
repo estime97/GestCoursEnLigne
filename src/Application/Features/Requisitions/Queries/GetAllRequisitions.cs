@@ -34,6 +34,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Queries
                     _.NumeroTitreFoncier.ToLower().Contains(search) ||
                     _.NomRequerant.ToLower().Contains(search) ||
                     _.PrenomRequerant.ToLower().Contains(search) ||
+                    _.Region.ToLower().Contains(search) ||
                     _.Bureau.ToLower().Contains(search) ||
                     _.Statut.ToLower().Contains(search));
                 }

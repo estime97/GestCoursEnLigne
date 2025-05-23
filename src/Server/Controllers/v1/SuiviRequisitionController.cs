@@ -61,16 +61,16 @@ namespace BlazorHero.CleanArchitecture.Server.Controllers.v1
             return Ok(await _mediator.Send(command));
         }
 
-        /// <summary>
-        /// Import old requisitions
-        /// </summary>
-        /// <param name="importCommand"></param>
-        /// <returns></returns>
-        [Authorize(Policy = Permissions.Requisitions.Import)]
-        [HttpPost("import")]
-        public async Task<IActionResult> Import(ImportRequisitions.Command importCommand)
-        {
-            return Ok(await _mediator.Send(importCommand));
-        }
+        ///// <summary>
+        ///// Import old requisitions
+        ///// </summary>
+        ///// <param name="importCommand"></param>
+        ///// <returns></returns>
+        //[Authorize(Policy = Permissions.Requisitions.Import)]
+        //[HttpPost("import")]
+        //public async Task<IActionResult> Import(ImportRequisitions.Command importCommand)
+        //{
+        //    return Ok(await _mediator.Send(importCommand));
+        //}
     }
 }
