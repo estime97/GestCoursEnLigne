@@ -22,7 +22,7 @@
             </MudGrid>
         </div>
         <MudSpacer />
-        <MudTextField T="string" Immediate="true" Placeholder="Rechercher" Adornment="@Adornment.Start" ValueChanged="@(_=>RefreshData(_))" AdornmentIcon="@Icons.Material.Filled.Search"
+        <MudTextField T="string" Immediate="false" Placeholder="Rechercher" Adornment="@Adornment.Start" ValueChanged="@(_=>RefreshData(_))" AdornmentIcon="@Icons.Material.Filled.Search"
                       IconSize="Size.Medium" Class="mt-0 mb-3" />
     </ToolBarContent>
     <HeaderContent>
