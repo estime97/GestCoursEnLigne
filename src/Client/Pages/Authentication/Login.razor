@@ -31,9 +31,9 @@
                           @bind-Value="_tokenModel.Password" For="@(() => _tokenModel.Password)"
                           InputType="@_passwordInput" Adornment="Adornment.End" AdornmentIcon="@_passwordInputIcon" OnAdornmentClick="TogglePasswordVisibility" />
         </MudItem>
-        <MudItem xs="12" Class="d-flex justify-space-between align-center">
+@*         <MudItem xs="12" Class="d-flex justify-space-between align-center">
             <MudLink Href="/account/forgot-password">@_localizer["Mot de Passe oublié ?"]</MudLink>
-        </MudItem>
+        </MudItem> *@
         <MudItem xs="12" Class="d-flex justify-center">
             <MudButton ButtonType="ButtonType.Submit" Variant="Variant.Filled" Disabled="@(!Validated)" Color="Color.Primary" Size="Size.Large" Style="width: 100%;">@_localizer["Se connecter"]</MudButton>
         </MudItem>
