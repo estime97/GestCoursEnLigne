@@ -31,10 +31,10 @@ else
                 else
                 {
                     <MudButton DropShadow="false" Variant="Variant.Filled" OnClick="GetUsersAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Reload"]</MudButton>
-                    @if (_canExportUsers)
+@*                     @if (_canExportUsers)
                     {
                         <MudButton DropShadow="false" Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
-                    }
+                    } *@
                 }
             </div>
             <MudSpacer />
