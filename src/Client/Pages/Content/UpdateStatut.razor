@@ -13,23 +13,23 @@
                 <MudGrid Class="mb-2">
                     <MudItem xs="6">
                         <MudInputLabel Class="pb-2">Numéro Requisition</MudInputLabel>
-                        <MudTextField T="string" For="@(() => Requisition.NumeroRequisition)" @bind-Value="Requisition.NumeroRequisition" Disabled="true" Variant="Variant.Filled" />
+                        <MudTextField T="string" For="@(() => Command.NumeroRequisition)" @bind-Value="Command.NumeroRequisition" Disabled="true" Variant="Variant.Filled" />
                     </MudItem>
                     <MudItem xs="6">
                         <MudInputLabel Class="pb-2">Ancien Statut</MudInputLabel>
-                        <MudSelect Disabled="true" T="string" For="@(() => Requisition.Statut)" @bind-Value="Requisition.Statut" Variant="Variant.Filled">
+                        <MudSelect Disabled="true" T="string" For="@(() => Command.OldStatut)" @bind-Value="Command.OldStatut" Variant="Variant.Filled">
                             @foreach (var item in Enum.GetValues(typeof(Statut)))
                             {
-                                <MudSelectItem Value="@(EnumDescription.GetDescription((Statut)item))">@EnumDescription.GetDescription((Statut)item)</MudSelectItem>
+                                <MudSelectItem Value="@(EnumHelper.GetDescription((Statut)item))">@EnumHelper.GetDescription((Statut)item)</MudSelectItem>
                             }
                         </MudSelect>
                     </MudItem>
                     <MudItem xs="12">
                         <MudInputLabel Class="pb-2">Nouveau statut</MudInputLabel>
-                        <MudSelect T="string" For="@(() => Command.Statut)" @bind-Value="Command.Statut">
+                        <MudSelect T="string" For="@(() => Command.ActualStatut)" @bind-Value="Command.ActualStatut">
                             @foreach (Statut item in Enum.GetValues(typeof(Statut)))
                             {
-                                <MudSelectItem Value="@EnumDescription.GetDescription((Statut)item)">@EnumDescription.GetDescription((Statut)item)</MudSelectItem>
+                                <MudSelectItem Value="@EnumHelper.GetDescription((Statut)item)">@EnumHelper.GetDescription((Statut)item)</MudSelectItem>
                             }
                         </MudSelect>
                     </MudItem>
@@ -38,7 +38,7 @@
                         <MudSelect T="ActualPosition" For="@(() => Command.PositionActuelle)" @bind-Value="Command.PositionActuelle">
                             @foreach (ActualPosition item in Enum.GetValues(typeof(ActualPosition)))
                             {
-                                <MudSelectItem Value="@item">@EnumDescription.GetDescription((ActualPosition)item)</MudSelectItem>
+                                <MudSelectItem Value="@item">@EnumHelper.GetDescription((ActualPosition)item)</MudSelectItem>
                             }
                         </MudSelect>
                     </MudItem>
@@ -51,7 +51,7 @@
                         <MudTextField T="string" For="@(() => Command.MotifRejet)" @bind-Value="Command.MotifRejet" Variant="Variant.Filled" Lines="3" />
                     </MudItem>
                     <MudItem xs="12">
-                        <MudButton FullWidth Variant="Variant.Filled" Disabled="@(string.IsNullOrEmpty(Command.Statut))" Color="Color.Primary" OnClick="SubmitAsync">
+                        <MudButton FullWidth Variant="Variant.Filled" Color="Color.Primary" OnClick="SubmitAsync">
                             Appliquer la modification
                         </MudButton>
                     </MudItem>

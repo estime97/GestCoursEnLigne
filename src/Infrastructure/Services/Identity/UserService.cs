@@ -307,7 +307,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     { _localizer["CreatedOn (Local)"], item => DateTime.SpecifyKind(item.CreatedOn, DateTimeKind.Utc).ToLocalTime().ToString("G", CultureInfo.CurrentCulture) },
                     { _localizer["CreatedOn (UTC)"], item => item.CreatedOn.ToString("G", CultureInfo.CurrentCulture) },
                     { _localizer["ProfilePictureDataUrl"], item => item.ProfilePictureDataUrl },
-                    { _localizer["Bureau"], item => EnumDescription.GetDescription(item.Bureau) },
+                    { _localizer["Bureau"], item => EnumHelper.GetDescription(item.Bureau) },
                 });
 
             return result;

@@ -1,5 +1,4 @@
-﻿using BlazorHero.CleanArchitecture.Application.Features.Requisitions;
-using BlazorHero.CleanArchitecture.Application.Features.Requisitions.Commands;
+﻿using BlazorHero.CleanArchitecture.Application.Features.Requisitions.Commands;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.SuiviRequisitions;
 
 using Microsoft.AspNetCore.Components;
@@ -14,19 +13,11 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
     {
         [CascadingParameter] IMudDialogInstance MudDialog { get; set; }
         [Inject] public ISuiviRequisitionManager suiviRequisitionManager { get; set; }
-        [Parameter] public RequisitionResponse Requisition { get; set; }
         [Parameter] public UpdateRequisition.Command Command { get; set; } = new();
 
         private async Task SubmitAsync()
         {
-            var response = await suiviRequisitionManager.UpdateRequisition(new UpdateRequisition.Command()
-            {
-                NumeroRequisition = Requisition.NumeroRequisition,
-                Statut = Command.Statut,
-                PositionActuelle = Command.PositionActuelle,
-                MotifRejet = Command.MotifRejet,
-                PiecesManquantes = Command.PiecesManquantes
-            });
+            var response = await suiviRequisitionManager.UpdateRequisition(Command);
             if (response.Succeeded)
             {
                 _snackBar.Add(response.Messages[0], Severity.Success);

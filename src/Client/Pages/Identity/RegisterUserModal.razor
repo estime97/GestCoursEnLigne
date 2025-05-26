@@ -20,7 +20,7 @@
                     <MudSelect T="Bureau" For="@(() => _registerUserModel.Bureau)" @bind-Value="_registerUserModel.Bureau">
                         @foreach (Bureau item in Enum.GetValues(typeof(Bureau)))
                         {
-                            <MudSelectItem Value="@item">@EnumDescription.GetDescription((Bureau)item)</MudSelectItem>
+                            <MudSelectItem Value="@item">@EnumHelper.GetDescription((Bureau)item)</MudSelectItem>
                         }
                     </MudSelect>
                 </MudItem>

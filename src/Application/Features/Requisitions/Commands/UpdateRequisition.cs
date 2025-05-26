@@ -19,8 +19,9 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
         public record Command : IRequest<Result<string>>
         {
             public string NumeroRequisition { get; set; }
-            public string Statut { get; set; }
-            public string? MotifRejet { get; set; }
+            public string OldStatut { get; set; }
+            public string ActualStatut { get; set; }
+            public string MotifRejet { get; set; }
             public ActualPosition PositionActuelle { get; set; }
             public string PiecesManquantes { get; set; }
         }
@@ -41,10 +42,13 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Command
                 {
                     return await Result<string>.FailAsync("Requisition not found.");
                 }
-                response.Statut = command.Statut;
+                if (!string.IsNullOrWhiteSpace(command.ActualStatut))
+                {
+                    response.Statut = command.ActualStatut;
+                }
                 response.MotifRejet = command.MotifRejet;
                 response.PiecesManquantes = command.PiecesManquantes;
-                response.Position = EnumDescription.GetDescription(command.PositionActuelle);
+                response.Position = EnumHelper.GetDescription(command.PositionActuelle);
                 await _unitOfWork.Repository<Requisition>().UpdateAsync(response);
                 await _unitOfWork.CommitAndRemoveCache(cancellationToken, ApplicationConstants.Cache.GetAllRequisitions);
                 return await Result<string>.SuccessAsync(response.NumeroRequisition, "Requisition updated.");

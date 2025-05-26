@@ -63,7 +63,7 @@ else
                 <MudHighlighter Text="@context.LastName" HighlightedText="@_searchString" />
             </MudTd>
             <MudTd DataLabel="Bureau">
-                <MudHighlighter Text="@(EnumDescription.GetDescription(context.Bureau))" HighlightedText="@_searchString" />
+                <MudHighlighter Text="@(EnumHelper.GetDescription(context.Bureau))" HighlightedText="@_searchString" />
             </MudTd>
             <MudTd DataLabel="UserName">
                 <MudHighlighter Text="@context.UserName" HighlightedText="@_searchString" />

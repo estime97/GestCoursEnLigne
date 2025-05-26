@@ -63,7 +63,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Queries
 
                 return await _unitOfWork.Repository<Requisition>().Entities
                     .Specify(new Specification(request.SearchString))
-                    .Where(_ => _.Bureau == EnumDescription.GetDescription(user.Data.Bureau))
+                    .Where(_ => _.Bureau == EnumHelper.GetDescription(user.Data.Bureau))
                     .Select(_ => new RequisitionResponse()
                     {
                         NumeroRequisition = _.NumeroRequisition,
