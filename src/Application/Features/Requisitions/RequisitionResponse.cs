@@ -7,6 +7,7 @@
         public string DateRequisition { get; set; }
         public string NomRequerant { get; set; }
         public string PrenomRequerant { get; set; }
+        public string Position { get; set; }
         public string Bureau { get; set; }
         public string Region { get; set; }
         public string Statut { get; set; }

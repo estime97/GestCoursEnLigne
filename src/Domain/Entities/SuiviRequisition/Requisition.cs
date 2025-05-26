@@ -11,6 +11,7 @@ namespace BlazorHero.CleanArchitecture.Domain.Entities.SuiviRequisition
         public string PrenomRequerant { get; set; }
         public string Bureau { get; set; }
         public string Region { get; set; }
+        public string Position { get; set; }
         public string Statut { get; set; }
         public string? MotifRejet { get; set; }
         public string? PiecesManquantes { get; set; }

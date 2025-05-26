@@ -1,8 +1,11 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Features.Requisitions;
+using BlazorHero.CleanArchitecture.Application.Features.Requisitions.Commands;
 using BlazorHero.CleanArchitecture.Application.Requests;
 using BlazorHero.CleanArchitecture.Client.Infrastructure.Managers.SuiviRequisitions;
+using BlazorHero.CleanArchitecture.Domain.Enums;
 using BlazorHero.CleanArchitecture.Shared.Constants.Permission;
 using BlazorHero.CleanArchitecture.Shared.Constants.Storage;
+using BlazorHero.CleanArchitecture.Shared.Enums;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 
 using Microsoft.AspNetCore.Authorization;
@@ -92,12 +95,20 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
         {
             var dialog = await _dialogService.ShowAsync<UpdateStatut>("", parameters: new DialogParameters()
             {
-                {nameof(UpdateStatut.Requisition), requisition},
+                {nameof(UpdateStatut.Command), new UpdateRequisition.Command()
+                {
+                    NumeroRequisition = requisition.NumeroRequisition,
+                    OldStatut = requisition.Statut,
+                    ActualStatut = requisition.Statut,
+                    MotifRejet = requisition.MotifRejet,
+                    PiecesManquantes = requisition.PiecesManquantes,
+                    PositionActuelle = EnumHelper.GetValue<ActualPosition>(requisition.Position)
+                }}
             },
             options: new DialogOptions()
             {
                 CloseOnEscapeKey = true,
-                MaxWidth = MaxWidth.ExtraSmall,
+                MaxWidth = MaxWidth.Medium,
                 BackdropClick = false,
                 CloseButton = true
             });
@@ -116,9 +127,10 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
             options: new DialogOptions()
             {
                 CloseOnEscapeKey = true,
-                MaxWidth = MaxWidth.Small,
+                MaxWidth = MaxWidth.Medium,
                 FullWidth = true,
-                BackdropClick = true
+                BackdropClick = true,
+                CloseButton = true
             });
             await dialog.Result;
         }

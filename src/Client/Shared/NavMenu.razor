@@ -13,16 +13,16 @@
 
     @if (_canViewUsers || _canViewRoles)
     {
-        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Administrator"]</MudListSubheader>
+        <MudListSubheader Class="mt-2 mb-n2">@_localizer["Administrateurs"]</MudListSubheader>
         @if (_canViewUsers)
         {
             <MudNavLink Href="/identity/users" Icon="@Icons.Material.Outlined.Person">
-                @_localizer["Users"]
+                @_localizer["Ustilisateurs"]
             </MudNavLink>
         }
         @if (_canViewRoles)
         {
-            <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Person">@_localizer["Roles"]</MudNavLink>
+            <MudNavLink Href="/identity/roles" Icon="@Icons.Material.Outlined.Person">@_localizer["Rôles"]</MudNavLink>
         }
     }
 </MudNavMenu>

@@ -1,8 +1,8 @@
 ﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<MainLayout> _localizer
 
 <MudAppBar Elevation="25">
-    <MudIcon Icon="@CustomIcons.BlazorHero" Size="Size.Medium" ViewBox="0 0 500 500" />
-    <MudText Typo="Typo.h6" Class="ml-4">Suivi Foncier - OTR</MudText>
+    <MudImage Src="./media/Avatar.png" Width="30" Height="50" />
+    <MudText Typo="Typo.h6" Class="ml-4">Suivi Réquisition - OTR</MudText>
     <MudSpacer />
     <MudMenu AnchorOrigin="_rightToLeft ? Origin.BottomRight : Origin.BottomLeft" Dense="true" Class="mt-1 ml-4">
         <ActivatorContent>
@@ -20,8 +20,8 @@
         <ChildContent>
             <UserCard Class="mt-n2" />
             <MudDivider Class="mb-2" />
-            <MudListItem T="string" Text="@_localizer["Account"]" Href="/account" Icon="@Icons.Material.Outlined.Person" />
-            <MudListItem T="string" Text="@_localizer["Logout"]" Icon="@Icons.Material.Filled.Logout" OnClick="Logout" />
+            <MudListItem T="string" Text="@_localizer["Compte"]" Href="/account" Icon="@Icons.Material.Outlined.Person" />
+            <MudListItem T="string" Text="@_localizer["Déconnexion"]" Icon="@Icons.Material.Filled.Logout" OnClick="Logout" />
         </ChildContent>
     </MudMenu>
 </MudAppBar>

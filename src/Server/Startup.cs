@@ -1,8 +1,12 @@
 using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Server.Extensions;
+using BlazorHero.CleanArchitecture.Server.Filters;
+using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
 using BlazorHero.CleanArchitecture.Server.Middlewares;
+
 using Hangfire;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,10 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using System.IO;
-using BlazorHero.CleanArchitecture.Server.Filters;
-using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
 using Microsoft.Extensions.Localization;
+
+using System.IO;
 
 namespace BlazorHero.CleanArchitecture.Server
 {
@@ -65,6 +68,15 @@ namespace BlazorHero.CleanArchitecture.Server
                 config.AssumeDefaultVersionWhenUnspecified = true;
                 config.ReportApiVersions = true;
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigin", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
             services.AddLazyCache();
         }
 
@@ -83,6 +95,7 @@ namespace BlazorHero.CleanArchitecture.Server
             });
             app.UseRequestLocalizationByCulture();
             app.UseRouting();
+            app.UseCors("AllowAllOrigin");
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseHangfireDashboard("/jobs", new DashboardOptions

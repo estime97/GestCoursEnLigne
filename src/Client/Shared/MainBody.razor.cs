@@ -187,8 +187,8 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
         {
             var parameters = new DialogParameters
             {
-                {nameof(Dialogs.Logout.ContentText), $"{_localizer["Logout Confirmation"]}"},
-                {nameof(Dialogs.Logout.ButtonText), $"{_localizer["Logout"]}"},
+                {nameof(Dialogs.Logout.ContentText), $"{_localizer["Confirmer Déconnexion"]}"},
+                {nameof(Dialogs.Logout.ButtonText), $"{_localizer["Déconnexion"]}"},
                 {nameof(Dialogs.Logout.Color), Color.Error},
                 {nameof(Dialogs.Logout.CurrentUserId), CurrentUserId},
                 {nameof(Dialogs.Logout.HubConnection), hubConnection}
@@ -196,7 +196,7 @@ namespace BlazorHero.CleanArchitecture.Client.Shared
 
             var options = new DialogOptions { CloseButton = true, MaxWidth = MaxWidth.Small, FullWidth = true };
 
-            await _dialogService.ShowAsync<Dialogs.Logout>(_localizer["Logout"], parameters, options);
+            await _dialogService.ShowAsync<Dialogs.Logout>(_localizer["Déconnexion"], parameters, options);
         }
 
         private HubConnection hubConnection;

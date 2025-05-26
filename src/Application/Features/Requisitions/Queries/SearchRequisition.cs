@@ -38,6 +38,7 @@ namespace BlazorHero.CleanArchitecture.Application.Features.Requisitions.Queries
                         PrenomRequerant = response.PrenomRequerant,
                         Bureau = response.Bureau,
                         Region = response.Region,
+                        Position = response.Position,
                         Statut = GetMessageRequerant(response),
                         MotifRejet = response.MotifRejet,
                         PiecesManquantes = response.PiecesManquantes,

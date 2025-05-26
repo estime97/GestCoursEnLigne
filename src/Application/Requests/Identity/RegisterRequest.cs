@@ -1,4 +1,6 @@
-﻿using System.ComponentModel.DataAnnotations;
+﻿using BlazorHero.CleanArchitecture.Domain.Enums;
+
+using System.ComponentModel.DataAnnotations;
 
 namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
 {
@@ -30,5 +32,6 @@ namespace BlazorHero.CleanArchitecture.Application.Requests.Identity
 
         public bool ActivateUser { get; set; } = false;
         public bool AutoConfirmEmail { get; set; } = false;
+        public Bureau Bureau { get; set; }
     }
 }

@@ -9,33 +9,35 @@
                 {
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Add" Class="mr-3 mb-n1" />
-                        @_localizer["Add Role"]
+                        @_localizer["Ajouter Rôle"]
                     </MudText>
                 }
                 else
                 {
                     <MudText Typo="Typo.h6">
                         <MudIcon Icon="@Icons.Material.Filled.Update" Class="mr-3 mb-n1" />
-                        @_localizer["Update Role"]
+                        @_localizer["Modifier Rôle"]
                     </MudText>
                 }
             }
         </TitleContent>
         <DialogContent>
-            <MudTextField For="@(() => RoleModel.Id)" @bind-Value="RoleModel.Id" Label="@_localizer["Role ID"]" Disabled />
-            <MudTextField For="@(() => RoleModel.Name)" @bind-Value="RoleModel.Name" Label="@_localizer["Role Name"]" Disabled="true"/>
-            <MudTextField For="@(() => RoleModel.Description)" @bind-Value="RoleModel.Description" Label="@_localizer["Description"]" />
+            <MudPaper Class="pa-4 mb-2 mt-1" Outlined="true">
+                <MudTextField For="@(() => RoleModel.Id)" @bind-Value="RoleModel.Id" Label="@_localizer["Rôle ID"]" Disabled />
+                <MudTextField For="@(() => RoleModel.Name)" @bind-Value="RoleModel.Name" Label="@_localizer["Libellé Rôle"]" Disabled="true" />
+                <MudTextField For="@(() => RoleModel.Description)" @bind-Value="RoleModel.Description" Label="@_localizer["Description"]" />
+            </MudPaper>
         </DialogContent>
         <DialogActions>
-            <MudButton Variant="Variant.Filled" OnClick="Cancel">@_localizer["Cancel"]</MudButton>
+            <MudButton Variant="Variant.Filled" OnClick="Cancel">@_localizer["Annuler"]</MudButton>
             @{
                 if (RoleModel.Id == null)
                 {
-                    <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Save Role"]</MudButton>
+                    <MudButton Class="mr-3" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Success">@_localizer["Enrégistrer Rôle"]</MudButton>
                 }
                 else
                 {
-                    <MudButton Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Update Role"]</MudButton>
+                    <MudButton Class="mr-3" Variant="Variant.Filled" ButtonType="ButtonType.Submit" Disabled="@(!Validated)" Color="Color.Secondary">@_localizer["Modifier Rôle"]</MudButton>
                 }
             }
         </DialogActions>
