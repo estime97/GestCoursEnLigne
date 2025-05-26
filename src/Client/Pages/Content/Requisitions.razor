@@ -32,6 +32,7 @@
         <MudTh><MudTableSortLabel SortLabel="PrenomRequerant" T="RequisitionResponse">Prénoms</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="Region" T="RequisitionResponse">Région</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="Bureau" T="RequisitionResponse">Bureau</MudTableSortLabel></MudTh>
+        <MudTh><MudTableSortLabel SortLabel="Bureau Actuel" T="RequisitionResponse">Bureau Actuel</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="DateRequisition" T="RequisitionResponse">Date Réquisition</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="Statut" T="RequisitionResponse">Statut</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="Actions" T="RequisitionResponse">Actions</MudTableSortLabel></MudTh>
@@ -43,6 +44,7 @@
         <MudTd DataLabel="PrenomRequerant">@context.PrenomRequerant</MudTd>
         <MudTd DataLabel="Region">@context.Region</MudTd>
         <MudTd DataLabel="Bureau">@context.Bureau</MudTd>
+        <MudTd DataLabel="BureauActuel">@context.Position</MudTd>
         <MudTd DataLabel="DateRequisition">@context.DateRequisition</MudTd>
         <MudTd DataLabel="Statut"><MudChip T="string" Color="Color.Primary" Variant="Variant.Text">@context.Statut</MudChip></MudTd>
         <MudTd DataLabel="Actions">

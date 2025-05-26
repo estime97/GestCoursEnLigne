@@ -24,6 +24,17 @@
                             }
                         </MudSelect>
                     </MudItem>
+                    <MudDivider />
+
+                    <MudItem xs="12">
+                        <MudInputLabel Class="pb-2">Position actuelle</MudInputLabel>
+                        <MudSelect T="ActualPosition" For="@(() => Command.PositionActuelle)" @bind-Value="Command.PositionActuelle">
+                            @foreach (var item in Enum.GetValues(typeof(ActualPosition)))
+                            {
+                                <MudSelectItem Value="@(EnumDescription.GetDescription((ActualPosition)item))">@EnumDescription.GetDescription((ActualPosition)item)</MudSelectItem>
+                            }
+                        </MudSelect>
+                    </MudItem>
                     <MudItem xs="12">
                         <MudInputLabel Class="pb-2">Nouveau statut</MudInputLabel>
                         <MudSelect T="string" For="@(() => Command.Statut)" @bind-Value="Command.Statut">
@@ -32,6 +43,10 @@
                                 <MudSelectItem Value="@(EnumDescription.GetDescription((Statut)item))">@EnumDescription.GetDescription((Statut)item)</MudSelectItem>
                             }
                         </MudSelect>
+                    </MudItem>
+                    <MudItem xs="12">
+                        <MudInputLabel Class="pb-2">Pièces manquantes</MudInputLabel>
+                        <MudTextField T="string" For="@(() => Command.PiecesManquantes)" @bind-Value="Command.PiecesManquantes" Variant="Variant.Filled" />
                     </MudItem>
                     <MudItem xs="12">
                         <MudInputLabel Class="pb-2">Motif</MudInputLabel>

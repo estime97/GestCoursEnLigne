@@ -22,6 +22,7 @@
                 <MudTextField For="@(() => _registerUserModel.ConfirmPassword)" InputType="InputType.Password" @bind-Value="_registerUserModel.ConfirmPassword" Label="@_localizer["Confirmer Mot de Passe"]" />
                 <MudCheckBox T="bool" @bind-Value="@_registerUserModel.ActivateUser" Label="@_localizer["Activer Utilisateur ?"]" Color="Color.Primary"></MudCheckBox>
                 <MudCheckBox T="bool" @bind-Value="@_registerUserModel.AutoConfirmEmail" Label="@_localizer["Email auto-confirmé ?"]" Color="Color.Primary"></MudCheckBox>
+                <MudTextField For="@(() => _registerUserModel.Bureau)" @bind-Value="_registerUserModel.Bureau" Label="@_localizer["Bureau"]" />
             </MudPaper>
         </DialogContent>
         <DialogActions>

@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Globalization;
-using System.Linq;
-using System.Text;
-using System.Text.Encodings.Web;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
+
 using BlazorHero.CleanArchitecture.Application.Exceptions;
 using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services;
@@ -16,13 +10,23 @@ using BlazorHero.CleanArchitecture.Application.Responses.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Specifications;
 using BlazorHero.CleanArchitecture.Shared.Constants.Role;
-using BlazorHero.CleanArchitecture.Shared.Models;
+using BlazorHero.CleanArchitecture.Shared.Enums;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
+
 using Hangfire;
+
 using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.WebUtilities;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Localization;
+
+using System;
+using System.Collections.Generic;
+using System.Globalization;
+using System.Linq;
+using System.Text;
+using System.Text.Encodings.Web;
+using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 {
@@ -76,7 +80,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                 UserName = request.UserName,
                 PhoneNumber = request.PhoneNumber,
                 IsActive = request.ActivateUser,
-                EmailConfirmed = request.AutoConfirmEmail
+                EmailConfirmed = request.AutoConfirmEmail,
+                Bureau = request.Bureau
             };
 
             if (!string.IsNullOrWhiteSpace(request.PhoneNumber))
@@ -302,6 +307,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
                     { _localizer["CreatedOn (Local)"], item => DateTime.SpecifyKind(item.CreatedOn, DateTimeKind.Utc).ToLocalTime().ToString("G", CultureInfo.CurrentCulture) },
                     { _localizer["CreatedOn (UTC)"], item => item.CreatedOn.ToString("G", CultureInfo.CurrentCulture) },
                     { _localizer["ProfilePictureDataUrl"], item => item.ProfilePictureDataUrl },
+                    { _localizer["Bureau"], item => EnumDescription.GetDescription(item.Bureau) },
                 });
 
             return result;
@@ -309,8 +315,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
 
         public async Task<IResult> SendConfirmEmailAsync(GetConfirmationLinkRequest request)
         {
-            var user =await  _userManager.FindByIdAsync(request.UserId);
-          await SendConfirmationMail(user, request.Origin);
+            var user = await _userManager.FindByIdAsync(request.UserId);
+            await SendConfirmationMail(user, request.Origin);
             return Result.Success("Mail Sent");
         }
     }

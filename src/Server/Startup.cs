@@ -1,8 +1,12 @@
 using BlazorHero.CleanArchitecture.Application.Extensions;
 using BlazorHero.CleanArchitecture.Infrastructure.Extensions;
 using BlazorHero.CleanArchitecture.Server.Extensions;
+using BlazorHero.CleanArchitecture.Server.Filters;
+using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
 using BlazorHero.CleanArchitecture.Server.Middlewares;
+
 using Hangfire;
+
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.AspNetCore.Http;
@@ -10,10 +14,9 @@ using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.FileProviders;
-using System.IO;
-using BlazorHero.CleanArchitecture.Server.Filters;
-using BlazorHero.CleanArchitecture.Server.Managers.Preferences;
 using Microsoft.Extensions.Localization;
+
+using System.IO;
 
 namespace BlazorHero.CleanArchitecture.Server
 {
@@ -31,6 +34,17 @@ namespace BlazorHero.CleanArchitecture.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAll", policy =>
+                {
+                    policy
+                        .AllowAnyOrigin()
+                        .AllowAnyHeader()
+                        .AllowAnyMethod();
+                });
+            });
+
             services.AddForwarding(_configuration);
             services.AddLocalization(options =>
             {
@@ -90,6 +104,7 @@ namespace BlazorHero.CleanArchitecture.Server
                 DashboardTitle = localizer["BlazorHero Jobs"],
                 Authorization = new[] { new HangfireAuthorizationFilter() }
             });
+            app.UseCors("AllowAll");
             app.UseEndpoints();
             app.ConfigureSwagger();
             app.Initialize(_configuration);
