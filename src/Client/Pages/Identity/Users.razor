@@ -2,6 +2,7 @@
 @attribute [Authorize(Policy = Permissions.Users.View)]
 @inject Microsoft.Extensions.Localization.IStringLocalizer<Users> _localizer
 @using BlazorHero.CleanArchitecture.Application.Responses.Identity
+@using BlazorHero.CleanArchitecture.Shared.Enums
 
 <style>
     .mud-table-container {
@@ -23,7 +24,7 @@ else
                 {
                     <MudButton DropShadow="false" Variant="Variant.Filled" Color="Color.Primary" OnClick="(() => InvokeModal())" StartIcon="@Icons.Material.Filled.Add" IconColor="Color.Surface">@_localizer["Ajouter"]</MudButton>
                     <MudButton DropShadow="false" Variant="Variant.Filled" OnClick="GetUsersAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Actualiser"]</MudButton>
-@*                     @if (_canExportUsers)
+                    @*                     @if (_canExportUsers)
                     {
                         <MudButton DropShadow="false" Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
                     } *@
@@ -31,7 +32,7 @@ else
                 else
                 {
                     <MudButton DropShadow="false" Variant="Variant.Filled" OnClick="GetUsersAsync" StartIcon="@Icons.Material.Filled.Refresh" IconColor="Color.Surface" Color="Color.Secondary">@_localizer["Actualiser"]</MudButton>
-@*                     @if (_canExportUsers)
+                    @*                     @if (_canExportUsers)
                     {
                         <MudButton DropShadow="false" Variant="Variant.Filled" OnClick="ExportToExcel" StartIcon="@Icons.Custom.FileFormats.FileExcel" IconColor="Color.Secondary" Color="Color.Surface" Style="margin-left: 5px;">@_localizer["Export"]</MudButton>
                     } *@
@@ -46,6 +47,7 @@ else
         <HeaderContent>
             <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.FirstName)">@_localizer["Prénoms"]</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.LastName)">@_localizer["Nom"]</MudTableSortLabel></MudTh>
+            <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.Bureau)">@_localizer["Bureau"]</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.UserName)">@_localizer["Nom d'Utilisateur"]</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.Email)">@_localizer["Email"]</MudTableSortLabel></MudTh>
             <MudTh><MudTableSortLabel SortBy="new Func<UserResponse, object>(x => x.PhoneNumber)">@_localizer["Téléphone"]</MudTableSortLabel></MudTh>
@@ -59,6 +61,9 @@ else
             </MudTd>
             <MudTd DataLabel="LastName">
                 <MudHighlighter Text="@context.LastName" HighlightedText="@_searchString" />
+            </MudTd>
+            <MudTd DataLabel="Bureau">
+                <MudHighlighter Text="@(EnumDescription.GetDescription(context.Bureau))" HighlightedText="@_searchString" />
             </MudTd>
             <MudTd DataLabel="UserName">
                 <MudHighlighter Text="@context.UserName" HighlightedText="@_searchString" />
