@@ -34,17 +34,6 @@ namespace BlazorHero.CleanArchitecture.Server
 
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddCors(options =>
-            {
-                options.AddPolicy("FrontendRequerantPolicy", policy =>
-                {
-                    policy
-                        .WithOrigins("http://suivi-test.otr.lan:80")
-                        .AllowAnyHeader()
-                        .AllowAnyMethod();
-                });
-            });
-
             services.AddForwarding(_configuration);
             services.AddLocalization(options =>
             {
@@ -79,6 +68,15 @@ namespace BlazorHero.CleanArchitecture.Server
                 config.AssumeDefaultVersionWhenUnspecified = true;
                 config.ReportApiVersions = true;
             });
+            services.AddCors(options =>
+            {
+                options.AddPolicy("AllowAllOrigin", policy =>
+                {
+                    policy.AllowAnyOrigin()
+                          .AllowAnyMethod()
+                          .AllowAnyHeader();
+                });
+            });
             services.AddLazyCache();
         }
 
@@ -97,6 +95,7 @@ namespace BlazorHero.CleanArchitecture.Server
             });
             app.UseRequestLocalizationByCulture();
             app.UseRouting();
+            app.UseCors("AllowAllOrigin");
             app.UseAuthentication();
             app.UseAuthorization();
             app.UseHangfireDashboard("/jobs", new DashboardOptions
@@ -104,9 +103,6 @@ namespace BlazorHero.CleanArchitecture.Server
                 DashboardTitle = localizer["BlazorHero Jobs"],
                 Authorization = new[] { new HangfireAuthorizationFilter() }
             });
-
-            app.UseCors("FrontendRequerantPolicy");
-
             app.UseEndpoints();
             app.ConfigureSwagger();
             app.Initialize(_configuration);
