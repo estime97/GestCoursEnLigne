@@ -1,5 +1,7 @@
 ﻿@page "/"
 @using BlazorHero.CleanArchitecture.Application.Features.Requisitions;
+@using BlazorHero.CleanArchitecture.Domain.Enums
+@using BlazorHero.CleanArchitecture.Shared.Enums
 
 <HeroTitle Title="Réquisitions" Description="Liste des réquisitions" />
 <MudTable @ref="Table" T="RequisitionResponse" Hover="true" ServerData="ServerReload">
@@ -30,7 +32,6 @@
         <MudTh><MudTableSortLabel SortLabel="NumeroTitre" T="RequisitionResponse">N° Titre</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="NomRequerant" T="RequisitionResponse">Nom</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="PrenomRequerant" T="RequisitionResponse">Prénoms</MudTableSortLabel></MudTh>
-        <MudTh><MudTableSortLabel SortLabel="Region" T="RequisitionResponse">Région</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="Bureau" T="RequisitionResponse">Bureau</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="PositionActuelle" T="RequisitionResponse">Position Actuelle</MudTableSortLabel></MudTh>
         <MudTh><MudTableSortLabel SortLabel="DateRequisition" T="RequisitionResponse">Date Réquisition</MudTableSortLabel></MudTh>
@@ -42,11 +43,10 @@
         <MudTd DataLabel="NumeroTitre">@context.NumeroTitreFoncier</MudTd>
         <MudTd DataLabel="NomRequerant">@context.NomRequerant</MudTd>
         <MudTd DataLabel="PrenomRequerant">@context.PrenomRequerant</MudTd>
-        <MudTd DataLabel="Region">@context.Region</MudTd>
         <MudTd DataLabel="Bureau">@context.Bureau</MudTd>
-        <MudTd DataLabel="BureauActuel">@context.Position</MudTd>
+        <MudTd DataLabel="PositionActuelle">@context.Position</MudTd>
         <MudTd DataLabel="DateRequisition">@context.DateRequisition</MudTd>
-        <MudTd DataLabel="Statut"><MudChip T="string" Color="Color.Primary" Variant="Variant.Text">@context.Statut</MudChip></MudTd>
+        <MudTd DataLabel="Statut"><MudChip T="string" Color="Color.Default">@context.Statut</MudChip></MudTd>
         <MudTd DataLabel="Actions">
             <MudButtonGroup Size="Size.Small" Color="Color.Primary" Variant="Variant.Outlined">
                 @if (_canUpdateRequisitions)

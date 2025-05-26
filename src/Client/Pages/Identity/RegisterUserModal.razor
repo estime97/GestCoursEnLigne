@@ -1,4 +1,6 @@
-﻿@inject Microsoft.Extensions.Localization.IStringLocalizer<RegisterUserModal> _localizer
+﻿@using BlazorHero.CleanArchitecture.Domain.Enums
+@using BlazorHero.CleanArchitecture.Shared.Enums
+@inject Microsoft.Extensions.Localization.IStringLocalizer<RegisterUserModal> _localizer
 
 <EditForm Model="@_registerUserModel" OnValidSubmit="SubmitAsync">
     <FluentValidationValidator @ref="_fluentValidationValidator" />
@@ -13,6 +15,15 @@
         </TitleContent>
         <DialogContent>
             <MudPaper Class="pa-4 mb-2 mt-1" Outlined="true">
+                <MudItem xs="12">
+                    <MudInputLabel Class="pb-2">Bureau</MudInputLabel>
+                    <MudSelect T="Bureau" For="@(() => _registerUserModel.Bureau)" @bind-Value="_registerUserModel.Bureau">
+                        @foreach (Bureau item in Enum.GetValues(typeof(Bureau)))
+                        {
+                            <MudSelectItem Value="@item">@EnumDescription.GetDescription((Bureau)item)</MudSelectItem>
+                        }
+                    </MudSelect>
+                </MudItem>
                 <MudTextField For="@(() => _registerUserModel.UserName)" @bind-Value="_registerUserModel.UserName" Label="@_localizer["Nom d'Utilisateur"]" />
                 <MudTextField For="@(() => _registerUserModel.FirstName)" @bind-Value="_registerUserModel.FirstName" Label="@_localizer["Prénoms"]" />
                 <MudTextField For="@(() => _registerUserModel.LastName)" @bind-Value="_registerUserModel.LastName" Label="@_localizer["Nom"]" />
@@ -22,7 +33,6 @@
                 <MudTextField For="@(() => _registerUserModel.ConfirmPassword)" InputType="InputType.Password" @bind-Value="_registerUserModel.ConfirmPassword" Label="@_localizer["Confirmer Mot de Passe"]" />
                 <MudCheckBox T="bool" @bind-Value="@_registerUserModel.ActivateUser" Label="@_localizer["Activer Utilisateur ?"]" Color="Color.Primary"></MudCheckBox>
                 <MudCheckBox T="bool" @bind-Value="@_registerUserModel.AutoConfirmEmail" Label="@_localizer["Email auto-confirmé ?"]" Color="Color.Primary"></MudCheckBox>
-                <MudTextField For="@(() => _registerUserModel.Bureau)" @bind-Value="_registerUserModel.Bureau" Label="@_localizer["Bureau"]" />
             </MudPaper>
         </DialogContent>
         <DialogActions>

@@ -36,10 +36,10 @@ namespace BlazorHero.CleanArchitecture.Server
         {
             services.AddCors(options =>
             {
-                options.AddPolicy("AllowAll", policy =>
+                options.AddPolicy("FrontendRequerantPolicy", policy =>
                 {
                     policy
-                        .AllowAnyOrigin()
+                        .WithOrigins("http://suivi-test.otr.lan:80")
                         .AllowAnyHeader()
                         .AllowAnyMethod();
                 });
@@ -104,7 +104,9 @@ namespace BlazorHero.CleanArchitecture.Server
                 DashboardTitle = localizer["BlazorHero Jobs"],
                 Authorization = new[] { new HangfireAuthorizationFilter() }
             });
-            app.UseCors("AllowAll");
+
+            app.UseCors("FrontendRequerantPolicy");
+
             app.UseEndpoints();
             app.ConfigureSwagger();
             app.Initialize(_configuration);

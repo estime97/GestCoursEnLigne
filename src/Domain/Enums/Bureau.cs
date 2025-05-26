@@ -4,7 +4,7 @@ namespace BlazorHero.CleanArchitecture.Domain.Enums
 {
     public enum Bureau
     {
-        [Description("GUICHET UNIQUE")]
+        [Description("GUICHET-UNIQUE")]
         GUICHETUNIQUE = 0,
         [Description("DCCFE-LOME")]
         LOME = 1,

@@ -4,6 +4,8 @@ namespace BlazorHero.CleanArchitecture.Domain.Enums
 {
     public enum ActualPosition
     {
+        [Description("INCONNUE")]
+        INCONNUE,
         [Description("GUICHET UNIQUE DU TITRE FONCIER")]
         GUICHET_UNIQUE,
         [Description("FORMALITE ET PREALABLE")]

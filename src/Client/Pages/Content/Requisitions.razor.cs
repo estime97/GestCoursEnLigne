@@ -97,7 +97,7 @@ namespace BlazorHero.CleanArchitecture.Client.Pages.Content
             options: new DialogOptions()
             {
                 CloseOnEscapeKey = true,
-                MaxWidth = MaxWidth.ExtraSmall,
+                MaxWidth = MaxWidth.Medium,
                 BackdropClick = false,
                 CloseButton = true
             });
