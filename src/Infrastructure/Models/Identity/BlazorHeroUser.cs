@@ -1,6 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Chat;
 using BlazorHero.CleanArchitecture.Application.Models.Chat;
 using BlazorHero.CleanArchitecture.Domain.Contracts;
+using BlazorHero.CleanArchitecture.Domain.Entities.Cours;
 using BlazorHero.CleanArchitecture.Domain.Enums;
 
 using Microsoft.AspNetCore.Identity;
@@ -37,6 +38,8 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
         public DateTime RefreshTokenExpiryTime { get; set; }
         public virtual ICollection<ChatHistory<BlazorHeroUser>> ChatHistoryFromUsers { get; set; }
         public virtual ICollection<ChatHistory<BlazorHeroUser>> ChatHistoryToUsers { get; set; }
+
+        public virtual ICollection<UserCourse> UserCourses { get; set; }
 
         public BlazorHeroUser()
         {
