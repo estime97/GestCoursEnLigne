@@ -5,7 +5,4 @@
     <AssemblyName>BlazorHero.CleanArchitecture.Domain</AssemblyName>
     <LangVersion>latest</LangVersion>
   </PropertyGroup>
-  <ItemGroup>
-    <Folder Include="Entities\Cours\" />
-  </ItemGroup>
 </Project>
