@@ -1,11 +1,13 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Repositories;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Serialization.Serializers;
+using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage;
 using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Storage.Provider;
 using BlazorHero.CleanArchitecture.Application.Serialization.JsonConverters;
 using BlazorHero.CleanArchitecture.Application.Serialization.Options;
 using BlazorHero.CleanArchitecture.Application.Serialization.Serializers;
 using BlazorHero.CleanArchitecture.Infrastructure.Repositories;
+using BlazorHero.CleanArchitecture.Infrastructure.Services.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage;
 using BlazorHero.CleanArchitecture.Infrastructure.Services.Storage.Provider;
 
@@ -47,6 +49,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Extensions
             return services
                 .AddScoped<IJsonSerializer, SystemTextJsonSerializer>()
                 .AddScoped<IStorageProvider, ServerStorageProvider>()
+                .AddScoped<IUserService, UserService>()
                 .AddScoped<IServerStorageService, ServerStorageService>()
                 .AddScoped<ISyncServerStorageService, ServerStorageService>()
                 .Configure<SystemTextJsonOptions>(configureOptions =>

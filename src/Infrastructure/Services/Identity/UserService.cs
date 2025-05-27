@@ -7,6 +7,7 @@ using BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Requests.Mail;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+using BlazorHero.CleanArchitecture.Domain.Entities.Cours;
 using BlazorHero.CleanArchitecture.Infrastructure.Models.Identity;
 using BlazorHero.CleanArchitecture.Infrastructure.Specifications;
 using BlazorHero.CleanArchitecture.Shared.Constants.Role;
@@ -318,6 +319,11 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Services.Identity
             var user = await _userManager.FindByIdAsync(request.UserId);
             await SendConfirmationMail(user, request.Origin);
             return Result.Success("Mail Sent");
+        }
+
+        public async Task<IApplicationUser> GetByIdAsync(string userId)
+        {
+            return await _userManager.FindByIdAsync(userId);
         }
     }
 }

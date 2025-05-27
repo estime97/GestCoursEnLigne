@@ -1,4 +1,6 @@
-﻿using System;
+﻿using BlazorHero.CleanArchitecture.Domain.Contracts;
+
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
@@ -6,9 +8,8 @@ using System.Threading.Tasks;
 
 namespace BlazorHero.CleanArchitecture.Domain.Entities.Cours
 {
-    public class Question
+    public class Question : AuditableEntity<int>
     {
-        public int Id { get; set; }
         public string Text { get; set; }
         public string OptionA { get; set; }
         public string OptionB { get; set; }

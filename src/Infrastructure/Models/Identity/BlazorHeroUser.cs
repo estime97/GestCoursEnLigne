@@ -12,13 +12,15 @@ using System.ComponentModel.DataAnnotations.Schema;
 
 namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
 {
-    public class BlazorHeroUser : IdentityUser<string>, IChatUser, IAuditableEntity<string>
+    public class BlazorHeroUser : IdentityUser<string>, IChatUser, IAuditableEntity<string>, IApplicationUser
     {
         public Bureau Bureau { get; set; }
         public string FirstName { get; set; }
 
         public string LastName { get; set; }
         public string CreatedBy { get; set; }
+
+        public string FullName => $"{FirstName} {LastName}";
 
         [Column(TypeName = "text")]
         public string ProfilePictureDataUrl { get; set; }
@@ -45,6 +47,7 @@ namespace BlazorHero.CleanArchitecture.Infrastructure.Models.Identity
         {
             ChatHistoryFromUsers = new HashSet<ChatHistory<BlazorHeroUser>>();
             ChatHistoryToUsers = new HashSet<ChatHistory<BlazorHeroUser>>();
+            UserCourses = new HashSet<UserCourse>();
         }
     }
 }

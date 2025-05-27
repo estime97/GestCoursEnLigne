@@ -1,6 +1,7 @@
 ﻿using BlazorHero.CleanArchitecture.Application.Interfaces.Common;
 using BlazorHero.CleanArchitecture.Application.Requests.Identity;
 using BlazorHero.CleanArchitecture.Application.Responses.Identity;
+using BlazorHero.CleanArchitecture.Domain.Entities.Cours;
 using BlazorHero.CleanArchitecture.Shared.Wrapper;
 
 using System.Collections.Generic;
@@ -32,5 +33,7 @@ namespace BlazorHero.CleanArchitecture.Application.Interfaces.Services.Identity
         Task<IResult> ResetPasswordAsync(ResetPasswordRequest request);
 
         Task<string> ExportToExcelAsync(string searchString = "");
+
+        Task<IApplicationUser> GetByIdAsync(string userId);
     }
 }
