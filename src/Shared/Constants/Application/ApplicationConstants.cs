@@ -30,6 +30,9 @@
             public const string GetAllBrandsCacheKey = "all-brands";
             public const string GetAllDocumentTypesCacheKey = "all-document-types";
             public const string GetAllRequisitions = "all-requisitions";
+            public const string GetAllCourseCacheKey = "all-courses";
+            public const string ModulesCacheKey = "all-modules";
+            public const string QuizzesCacheKey = "all-quizzes";
 
             public static string GetAllEntityExtendedAttributesCacheKey(string entityFullName)
             {

@@ -29,4 +29,9 @@
       </Generator>
     </EmbeddedResource>
   </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Features\cours\Queries\" />
+    <Folder Include="Features\Module\Queries\" />
+    <Folder Include="Features\Quiz\Queries\" />
+  </ItemGroup>
 </Project>
