@@ -62,6 +62,7 @@ namespace BlazorHero.CleanArchitecture.Server
             services.AddExtendedAttributesValidators();
             services.AddExtendedAttributesHandlers();
             services.AddRazorPages();
+            services.AddScalar();
             services.AddApiVersioning(config =>
             {
                 config.DefaultApiVersion = new ApiVersion(1, 0);
@@ -105,6 +106,13 @@ namespace BlazorHero.CleanArchitecture.Server
             });
             app.UseEndpoints();
             app.ConfigureSwagger();
+            app.UseScalar(options =>
+            {
+                options.Title = "BlazorHero API";
+                options.Description = "Documentation interactive de mon projet perso";
+                options.Theme = ScalarTheme.Dark; 
+            });
+
             app.Initialize(_configuration);
         }
     }
