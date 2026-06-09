@@ -32,7 +32,11 @@
             public const string GetAllRequisitions = "all-requisitions";
             public const string GetAllCourseCacheKey = "all-courses";
             public const string ModulesCacheKey = "all-modules";
-            public const string QuizzesCacheKey = "all-quizzes";
+            public const string GetAllQuizzesCacheKey = "all-quizzes";
+            public const string GetAllEnrollUserToCourseCacheKey = "all-Enroller-Courses";
+            public const string GetAllLessonsCacheKey = "all-lessons";
+            public const string GetAllQuestionsCacheKey = "all-questions";
+            public const string GetAllAnswersCacheKey = "all-answers";
 
             public static string GetAllEntityExtendedAttributesCacheKey(string entityFullName)
             {

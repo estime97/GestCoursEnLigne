@@ -12,6 +12,7 @@ namespace BlazorHero.CleanArchitecture.Domain.Entities.Cours
     {
         public string Title { get; set; }
         public string ContentUrl { get; set; }
+        public string Type { get; set; } // "video", "pdf"
         public int ModuleId { get; set; }
         public virtual Module Module { get; set; }
     }

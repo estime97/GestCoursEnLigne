@@ -16,6 +16,7 @@ namespace BlazorHero.CleanArchitecture.Domain.Entities.Cours
         public string OptionC { get; set; }
         public string OptionD { get; set; }
         public string CorrectAnswer { get; set; }
+        public List<string> Options { get; set; }
         public int QuizId { get; set; }
         public virtual Quiz Quiz { get; set; }
     }
